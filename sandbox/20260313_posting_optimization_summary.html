@@ -141,23 +141,24 @@
   <div class="slide-body">
     <p><strong>ポスティング施策</strong>とは、menuアプリの新規ユーザーを獲得するために、クーポン付きの紙チラシを各エリアのポストに配布する施策です。全国515エリアに対し、月間数千万円規模で実施しています。</p>
 
-    <h3>これまでの課題</h3>
+    <h3>改善の余地があった点</h3>
+    <p>施策自体は継続的に運用されてきましたが、判断の根拠やプロセスが決まった形式で記録・蓄積される仕組みがなく、デザイナーや担当者の経験値・記憶に頼る部分が大きい状態でした。</p>
     <div class="card-grid">
       <div class="card">
-        <div class="card-title">エリア選定が属人的</div>
-        <div class="card-desc">「どこに配るか」が担当者の経験と勘に依存。エリアごとの費用対効果を比較する仕組みがなかった</div>
+        <div class="card-title">エリア選定の判断基準</div>
+        <div class="card-desc">配布先の選定にあたり、エリアごとの費用対効果を横並びで比較・記録する仕組みがなく、過去の経験をもとに判断していた</div>
       </div>
       <div class="card">
-        <div class="card-title">デザインの検証ができていない</div>
-        <div class="card-desc">どのチラシデザインが効果的かの検証ルールがなく、過去の傾向も整理されていなかった</div>
+        <div class="card-title">デザインの検証プロセス</div>
+        <div class="card-desc">チラシデザインの効果を比較する統一的なルールがなく、どの要素が効果に影響しているかの知見が蓄積されにくかった</div>
       </div>
       <div class="card">
-        <div class="card-title">業務フローが暗黙知</div>
-        <div class="card-desc">企画〜配布の手順・スケジュールが担当者の頭の中にあり、引き継ぎが難しい状態だった</div>
+        <div class="card-title">業務フローの明文化</div>
+        <div class="card-desc">企画〜配布の手順やスケジュールがドキュメント化されておらず、引き継ぎや品質の均一化が難しかった</div>
       </div>
       <div class="card">
-        <div class="card-title">効果の振り返りが不十分</div>
-        <div class="card-desc">配って終わりで、次の配布計画にデータが活用されていなかった</div>
+        <div class="card-title">振り返りの仕組み化</div>
+        <div class="card-desc">施策後の振り返りは行われていたものの、次の配布計画に定量的に反映するフォーマットが整っていなかった</div>
       </div>
     </div>
 
@@ -180,9 +181,9 @@
   <div class="slide-body">
     <div class="card-grid">
       <div class="card">
-        <div class="status status-done">完了</div>
+        <div class="status status-wip">一部進行中</div>
         <div class="card-title">① 効果測定の基盤づくり</div>
-        <div class="card-desc">CVR・CPA・LTVを定義し、集計の仕組みを構築</div>
+        <div class="card-desc">KPI定義の統一は完了。効果表の作り替えが進行中</div>
       </div>
       <div class="card">
         <div class="status status-done">完了</div>
@@ -191,13 +192,13 @@
       </div>
       <div class="card">
         <div class="status status-wip">一部進行中</div>
-        <div class="card-title">③ 業務フロー・ツールの整備</div>
-        <div class="card-desc">フロー図・マニュアル完成。予算配分ツールは3月中</div>
+        <div class="card-title">③ 安定運用体制の整備</div>
+        <div class="card-desc">フロー図・マニュアル完成。予算配分ツールは構想段階</div>
       </div>
       <div class="card">
         <div class="status status-wip">一部進行中</div>
-        <div class="card-title">④ 費用対効果の改善</div>
-        <div class="card-desc">エリアランク確定。デザイン検証ルール・クーポン額検証が進行中</div>
+        <div class="card-title">④ CPA最適化プロセスの確立</div>
+        <div class="card-desc">エリアランク確定。コスト削減検証・クーポン額検証・クリエイティブPDCAが進行中</div>
       </div>
     </div>
 
@@ -278,23 +279,10 @@
     </table>
     <p>代理店マージンを含めた「実際にかかっている費用」でCPAを算出するように変更しました。過去データも全てグロス費用ベースで再算出済みです。</p>
 
-    <h3>全体の実績サマリー</h3>
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-value">0.18%</div>
-        <div class="metric-label">平均CVR</div>
-        <div class="metric-sub">1,000枚あたり約1.8件</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">¥4,959</div>
-        <div class="metric-label">CPA中央値</div>
-        <div class="metric-sub">平均は¥6,438</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">502</div>
-        <div class="metric-label">配布実績エリア</div>
-        <div class="metric-sub">全515エリア中</div>
-      </div>
+    <h3>効果表の作り替え（進行中）</h3>
+    <p>施策ごとの効果を確認するために使用していた「効果表」について、データソースを<strong>orgからjoin_orders_light</strong>に変更し、作り替え作業を進めています。上記のKPI定義変更を効果表にも反映し、統一された基準で施策の振り返りができるようにします。</p>
+    <div class="callout orange">
+      <strong>ステータス</strong>：KPI定義の統一は完了。効果表のソース変更・作り替えは進行中。
     </div>
   </div>
 </div>
@@ -365,8 +353,8 @@
 <div class="slide divider">
   <div class="divider-inner">
     <div class="divider-num">③</div>
-    <h2>業務フロー・ツールの整備</h2>
-    <p>属人化の解消と運用の標準化</p>
+    <h2>安定運用体制の整備</h2>
+    <p>業務フロー・マニュアル・ツールの標準化</p>
   </div>
 </div>
 
@@ -376,7 +364,7 @@
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">05</div>
-    <div class="slide-title">業務フロー・マニュアル・ツール</div>
+    <div class="slide-title">安定運用体制の整備</div>
   </div>
   <div class="slide-body">
     <h3>業務フローチャート</h3>
@@ -407,16 +395,12 @@
       </a>
     </div>
 
-    <h3>予算配分シミュレーションツール（作成中）</h3>
-    <p>予算額と許容CPAを入力すると、エリアランク・季節性・配布単価を考慮して最適な配布先と部数を自動算出するツールです。3月中に完成予定。</p>
+    <h3>予算配分シミュレーションツール（構想段階）</h3>
+    <p>予算額と許容CPAを入力すると、エリアランク・季節性・配布単価を考慮して最適な配布先と部数を自動算出するツールの構想があります。分析結果を運用に直結させる仕組みとして検討中です。</p>
     <table>
-      <tr><th>入力</th><th>出力</th></tr>
+      <tr><th>入力（想定）</th><th>出力（想定）</th></tr>
       <tr><td>予算（円）、許容CPA（円）、配布月、エリア指定（任意）</td><td>エリアごとの配布部数・費用・想定CVR・想定CPA</td></tr>
     </table>
-    <div class="callout">
-      <strong>シミュレーション例</strong>（予算8,000万円・許容CPA 6,000円・4月配布）<br>
-      → 235エリアに配布、期待CPA 3,876円、期待CV数 20,641件
-    </div>
   </div>
 </div>
 
@@ -426,7 +410,7 @@
 <div class="slide divider">
   <div class="divider-inner">
     <div class="divider-num">④</div>
-    <h2>費用対効果の改善</h2>
+    <h2>CPA最適化プロセスの確立</h2>
     <p>エリア・時期・デザインの分析と改善施策</p>
   </div>
 </div>
@@ -540,15 +524,29 @@
       <tr><td>3</td><td>王道ギフトカード 2,000円</td><td>2,254円</td></tr>
     </table>
 
-    <h3>今後の課題：デザイン検証の仕組みづくり</h3>
+    <h3>クリエイティブPDCAプロセスの構築</h3>
     <div class="callout orange">
       <strong>過去データの限界</strong>：「どのタイプが良いか」は分かるが「デザインの何が効いているか」は分からない。過去のABテストも配布設計が不統一で厳密な比較が難しい。<br><br>
-      <strong>今後の方針</strong>（CR検証フレームワーク・3月中に確定予定）：
+      <strong>CR検証フレームワーク</strong>（構築中）：
       <ul style="margin-top:8px;">
         <li>訴求軸・フォーマット軸・表現手法軸に分解して、<strong>1施策1変数</strong>ずつ検証</li>
         <li>同一エリア内でランダムに配布することを原則化</li>
         <li>統計的に有意な差を検出するために必要な配布量：<strong>1群あたり約12.5万部</strong></li>
       </ul>
+    </div>
+
+    <h3>進行中の検証</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:3px solid var(--orange);">
+        <div class="status status-wip">進行中</div>
+        <div class="card-title">コスト削減検証</div>
+        <div class="card-desc">配布単価や印刷コストの見直しによるCPA改善の余地を検証中</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--orange);">
+        <div class="status status-wip">進行中</div>
+        <div class="card-title">クーポン額検証</div>
+        <div class="card-desc">クーポン金額とCVR・CPAの関係を実地テストで検証中（〜5月末）</div>
+      </div>
     </div>
   </div>
 </div>
@@ -567,8 +565,8 @@
         <div class="tl-dot"></div>
         <div class="tl-content">
           <strong>3月中</strong>
-          <p>予算配分シミュレーションツールの完成</p>
-          <p>デザインABテストの検証ルール（CR検証フレームワーク）確定</p>
+          <p>CR検証フレームワークの確定</p>
+          <p>効果表の作り替え完了</p>
         </div>
       </div>
       <div class="tl-item">
@@ -603,7 +601,7 @@
       </a>
       <a class="link-card" href="#" style="opacity:0.5;pointer-events:none;">
         <div class="link-icon">&#128736;</div>
-        <div><div class="link-title">予算配分シミュレーションツール</div><div class="link-desc">3月中に完成予定</div></div>
+        <div><div class="link-title">予算配分シミュレーションツール</div><div class="link-desc">構想段階</div></div>
       </a>
     </div>
   </div>

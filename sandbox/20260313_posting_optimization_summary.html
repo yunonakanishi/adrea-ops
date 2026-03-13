@@ -395,126 +395,68 @@
 </div>
 
 <!-- ================================================ -->
-<!-- 領域④-A: エリア分析 -->
+<!-- 領域④-A: 過去データの分析結果 -->
 <!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">06</div>
-    <div class="slide-title">エリア分析 —「どこに配るべきか」</div>
+    <div class="slide-title">過去データの分析結果</div>
+    <div class="slide-sub">エリア・時期・クリエイティブの3軸</div>
   </div>
   <div class="slide-body">
-    <h3>分析の手法</h3>
-    <ol class="step-list">
-      <li><strong>エリア別の実績集約</strong>：過去2年間の全施策データから、エリアごとに累計配布部数・CV数・加重平均CVR・CPAを算出</li>
-      <li><strong>エリア属性との相関分析</strong>：515エリアの人口動態（年齢、世帯構成、年収帯など206項目）とCVRの関係を統計的に分析。単純相関 → 都道府県別分析 → 決定木 → 施策を制御した偏相関・重回帰と、段階的にアプローチを深めた</li>
-      <li><strong>エリア優先度のスコアリング</strong>：実績CPAベースのスコアとエリア属性ベースのスコアを組み合わせ、A / B / Cに分類</li>
-    </ol>
-
-    <h3>分析結果</h3>
+    <h3>エリア軸 —「どこに配るべきか」</h3>
+    <p>過去2年間の実績CPAとエリア属性（人口動態206項目）を組み合わせ、515エリアをA / B / Cにランク分け。</p>
     <table>
       <tr><th>ランク</th><th>エリア数</th><th>平均CPA</th><th>平均CVR</th></tr>
       <tr><td><strong style="color:var(--green);">A</strong></td><td>171</td><td>4,094円</td><td>0.220%</td></tr>
       <tr><td><strong style="color:var(--blue);">B</strong></td><td>172</td><td>6,278円</td><td>0.143%</td></tr>
       <tr><td><strong style="color:var(--orange);">C</strong></td><td>172</td><td>9,641円</td><td>0.093%</td></tr>
     </table>
-
-    <h3>エリア属性から分かったこと</h3>
     <div class="card-grid">
       <div class="card" style="border-left:3px solid var(--green);">
-        <div class="card-title">CVRが高くなるエリアの傾向</div>
+        <div class="card-title">CVRが高いエリアの傾向</div>
         <div class="card-desc">25〜34歳が多い ／ 単身世帯が多い ／ 賃貸が多い ／ 労働人口が多い</div>
       </div>
       <div class="card" style="border-left:3px solid var(--red);">
-        <div class="card-title">CVRが低くなるエリアの傾向</div>
+        <div class="card-title">CVRが低いエリアの傾向</div>
         <div class="card-desc">55歳以上が多い ／ 高齢世帯員が多い</div>
       </div>
     </div>
+    <p style="font-size:13px;color:var(--muted);">※ エリア属性がCVRに与える影響は全体の約8%。優先度は実績CPAをメインに判断し、属性は配布実績が少ないエリアの補助指標として使用。</p>
 
-    <div class="callout">
-      ただし、エリア属性がCVRに与える影響は全体の約8%程度。エリアの優先度は<strong>実績CPA</strong>をメインに判断し、属性は配布実績が少ないエリアの補助指標として使用。
-    </div>
+    <h3>時期軸 —「いつ配るべきか」</h3>
+    <p>同一エリアの複数月配布データからエリア差を除去し、純粋な季節変動を抽出。</p>
+    <table>
+      <tr><th>時期</th><th>月別配分係数</th><th>傾向</th></tr>
+      <tr><td><strong style="color:var(--green);">12月</strong></td><td>1.226（年間最高）</td><td>CVRが最も高い</td></tr>
+      <tr><td>1〜2月</td><td>1.1前後</td><td>冬場は全般的に良い</td></tr>
+      <tr><td>3〜6月</td><td>0.9〜1.0</td><td>標準的</td></tr>
+      <tr><td><strong style="color:var(--red);">7〜10月</strong></td><td>0.7〜0.8</td><td>夏場は全般的に悪い</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--muted);">※ 配分係数 = その月のCVR ÷ 年間平均CVR。冬場に厚く・夏場に薄く配分することで、同じ予算でもCV数を増やせる。</p>
+
+    <h3>クリエイティブ軸 —「何を配るべきか」</h3>
+    <p>過去133種類のデザインを訴求タイプ別に分類し、加重平均CVR・CPAを比較。</p>
+    <table>
+      <tr><th>訴求タイプ</th><th>CVR</th><th>CPA</th><th>補足</th></tr>
+      <tr><td><strong>金券系</strong></td><td>0.180%</td><td style="color:var(--green);font-weight:700;">4,594円</td><td>CPA最良。コストと反応率のバランスが最も良い</td></tr>
+      <tr><td><strong>スクラッチ・くじ系</strong></td><td style="color:var(--green);font-weight:700;">0.200%</td><td>5,535円</td><td>CVR最高だが印刷コストが高い</td></tr>
+      <tr><td><strong>お札系</strong></td><td>0.166%</td><td>5,008円</td><td>安定した実績</td></tr>
+      <tr><td><strong>カード系</strong></td><td>0.151%</td><td>5,455円</td><td>—</td></tr>
+      <tr><td><strong>ハガキ系</strong></td><td>0.110%</td><td>7,605円</td><td>CVR・CPAともに効率が悪い</td></tr>
+    </table>
   </div>
 </div>
 
 <!-- ================================================ -->
-<!-- 領域④-B: 時期分析 -->
+<!-- 領域④-B: 進行中の検証 -->
 <!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">07</div>
-    <div class="slide-title">時期分析 —「いつ配るべきか」</div>
+    <div class="slide-title">進行中の検証</div>
   </div>
   <div class="slide-body">
-    <h3>分析の手法</h3>
-    <ol class="step-list">
-      <li><strong>月別のCVR・CPA推移</strong>を算出（全エリアの加重平均）</li>
-      <li><strong>同一エリアが複数月に配布されたケース</strong>に絞り、エリア差を固定した純粋な時期変動を抽出（エリアの違いによるノイズを除去）</li>
-      <li><strong>異常値月の検出</strong>：平均±2σを超える月を特定</li>
-    </ol>
-
-    <h3>分析結果</h3>
-    <table>
-      <tr><th>時期</th><th>月別配分係数</th><th>傾向</th></tr>
-      <tr><td><strong style="color:var(--green);">12月</strong></td><td>1.226（年間最高）</td><td>CVRが最も高い。同じ予算で最も効率良く獲得できる</td></tr>
-      <tr><td>1〜2月</td><td>1.1前後</td><td>冬場は全般的に良い</td></tr>
-      <tr><td>3〜6月</td><td>0.9〜1.0</td><td>標準的</td></tr>
-      <tr><td><strong style="color:var(--orange);">7〜10月</strong></td><td>0.7〜0.8</td><td>夏場は全般的に悪い</td></tr>
-      <tr><td><strong style="color:var(--red);">8月</strong></td><td>0.712（年間最低）</td><td>CVRが最も低い</td></tr>
-    </table>
-    <p>※ 配分係数 = その月のCVR ÷ 年間平均CVR。1.0が平均、1.2なら平均の1.2倍の効率。</p>
-
-    <div class="callout green">
-      <strong>活用方法</strong>：年間の配布予算を月ごとに均等配分するのではなく、冬場に厚く・夏場に薄く配分することで、同じ予算でもCV数を増やせる。予算配分シミュレーションツールにこの季節係数を組み込む予定。
-    </div>
-  </div>
-</div>
-
-<!-- ================================================ -->
-<!-- 領域④-C: デザイン分析 -->
-<!-- ================================================ -->
-<div class="slide">
-  <div class="slide-header">
-    <div class="slide-num">08</div>
-    <div class="slide-title">デザイン分析 —「何を配るべきか」</div>
-  </div>
-  <div class="slide-body">
-    <h3>分析の手法</h3>
-    <ol class="step-list">
-      <li><strong>デザイン別のCVR・CPA算出</strong>：過去に使用した133種類のデザインについて加重平均を算出</li>
-      <li><strong>訴求タイプ別に分類</strong>：デザイン名から機械的にスクラッチ系・金券系・お札系・カード系・ハガキ系に分類し、タイプ別の傾向を比較</li>
-      <li><strong>ABテストの勝敗分析</strong>：同一施策×同一エリアで複数デザインを配布したケース（6,715ペア）について、CV数の差を比較</li>
-    </ol>
-
-    <h3>訴求タイプ別の実績</h3>
-    <table>
-      <tr><th>訴求タイプ</th><th>CVR</th><th>CPA</th><th>補足</th></tr>
-      <tr><td><strong>金券系</strong></td><td>0.180%</td><td style="color:var(--green);font-weight:700;">4,594円</td><td>CPA最良。コストと反応率のバランスが最も良い</td></tr>
-      <tr><td><strong>スクラッチ・くじ系</strong></td><td style="color:var(--green);font-weight:700;">0.200%</td><td>5,535円</td><td>CVR最高だが印刷コストが高くCPAでは金券系に劣後</td></tr>
-      <tr><td><strong>お札系</strong></td><td>0.166%</td><td>5,008円</td><td>安定した実績</td></tr>
-      <tr><td><strong>カード系</strong></td><td>0.151%</td><td>5,455円</td><td>—</td></tr>
-      <tr><td><strong>ハガキ系</strong></td><td>0.110%</td><td>7,605円</td><td>CVR・CPAともに最も効率が悪い</td></tr>
-    </table>
-
-    <h3>CPA TOP3 デザイン</h3>
-    <table>
-      <tr><th>#</th><th>デザイン</th><th>CPA</th></tr>
-      <tr><td>1</td><td>金券（ドル札風L）_既存1ヵ月</td><td>1,643円</td></tr>
-      <tr><td>2</td><td>金券（ドル札風L）_既存2週間</td><td>2,010円</td></tr>
-      <tr><td>3</td><td>王道ギフトカード 2,000円</td><td>2,254円</td></tr>
-    </table>
-
-    <h3>クリエイティブPDCAプロセスの構築</h3>
-    <div class="callout orange">
-      <strong>過去データの限界</strong>：「どのタイプが良いか」は分かるが「デザインの何が効いているか」は分からない。過去のABテストも配布設計が不統一で厳密な比較が難しい。<br><br>
-      <strong>CR検証フレームワーク</strong>（構築中）：
-      <ul style="margin-top:8px;">
-        <li>訴求軸・フォーマット軸・表現手法軸に分解して、<strong>1施策1変数</strong>ずつ検証</li>
-        <li>同一エリア内でランダムに配布することを原則化</li>
-        <li>統計的に有意な差を検出するために必要な配布量：<strong>1群あたり約12.5万部</strong></li>
-      </ul>
-    </div>
-
-    <h3>進行中の検証</h3>
     <div class="card-grid">
       <div class="card" style="border-left:3px solid var(--orange);">
         <div class="status status-wip">進行中</div>
@@ -526,6 +468,53 @@
         <div class="card-title">クーポン額検証</div>
         <div class="card-desc">クーポン金額とCVR・CPAの関係を実地テストで検証中（〜5月末）</div>
       </div>
+    </div>
+
+    <h3>過去データ分析の限界</h3>
+    <div class="callout orange">
+      過去データからは「どの訴求タイプが良いか」の傾向は分かるが、「デザインの何が効いているか」までは特定できない。過去のABテストも配布設計が不統一で、厳密な比較が難しい状態。<br><br>
+      → コスト面・クーポン額の検証と並行して、デザインを科学的に検証するための仕組みづくりが必要。
+    </div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域④-C: クリエイティブPDCAプロセスの構築 -->
+<!-- ================================================ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">08</div>
+    <div class="slide-title">クリエイティブPDCAプロセスの構築</div>
+    <div class="slide-sub">これからやること</div>
+  </div>
+  <div class="slide-body">
+    <p>「デザインの何が効いているか」を特定するために、CR検証フレームワークを構築中です。</p>
+
+    <h3>検証の設計方針</h3>
+    <div class="card-grid cols3">
+      <div class="card" style="border-top:3px solid var(--blue);">
+        <div class="card-title">訴求軸</div>
+        <div class="card-desc">割引訴求 vs 体験訴求 vs 限定訴求 など、メッセージの切り口を検証</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--green);">
+        <div class="card-title">フォーマット軸</div>
+        <div class="card-desc">金券型 vs カード型 vs ハガキ型 など、チラシの形状・仕様を検証</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--purple);">
+        <div class="card-title">表現手法軸</div>
+        <div class="card-desc">写真 vs イラスト、色味、レイアウトなどビジュアル要素を検証</div>
+      </div>
+    </div>
+
+    <h3>ABテストのルール</h3>
+    <ul>
+      <li><strong>1施策1変数</strong>：1回の検証で変える要素は1つだけ。複数変数を同時に変えない</li>
+      <li><strong>同一エリア内でランダム配布</strong>：エリア差の影響を排除する</li>
+      <li><strong>必要配布量</strong>：統計的に有意な差を検出するために、1群あたり約<strong>12.5万部</strong></li>
+    </ul>
+
+    <div class="callout green">
+      <strong>目指す状態</strong>：施策ごとに「何を検証するか」を事前に決め、結果を蓄積し、次のデザイン判断に反映するサイクルを回せる状態。
     </div>
   </div>
 </div>

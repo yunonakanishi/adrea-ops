@@ -3,40 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>menu ポスティング業務ドキュメント</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<title>adrea-ops</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  :root { --bg:#f8f9fc; --surface:#fff; --border:#e2e8f0; --text:#1a202c; --muted:#64748b; --dim:#94a3b8; --blue:#2563eb; --blue-bg:#eff6ff; --green:#059669; --green-bg:#ecfdf5; --purple:#7c3aed; --purple-bg:#f5f3ff; --shadow:0 4px 12px rgba(0,0,0,0.05); --radius:12px; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#f8f9fc; color:#1a202c; font-family:'Noto Sans JP',sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
-  .container { max-width:560px; width:100%; padding:32px; }
-  h1 { font-size:22px; font-weight:900; margin-bottom:8px; }
-  .sub { font-size:13px; color:#64748b; margin-bottom:32px; }
-  .card { display:block; background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:24px 28px; margin-bottom:16px; text-decoration:none; color:inherit; transition:all 0.2s; }
+  body { background:var(--bg); color:var(--text); font-family:'Noto Sans JP','Inter',sans-serif; line-height:1.7; }
+  .header { background:linear-gradient(135deg,#1e293b,#334155); color:#fff; padding:48px 56px 40px; }
+  .header h1 { font-size:28px; font-weight:900; }
+  .header-sub { font-size:14px; color:rgba(255,255,255,0.6); margin-top:6px; }
+  .main { max-width:960px; margin:0 auto; padding:40px 32px 80px; }
+  .section { margin-bottom:48px; }
+  .section-title { font-size:18px; font-weight:800; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+  .section-title .icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .icon-master { background:var(--green-bg); color:var(--green); }
+  .icon-project { background:var(--blue-bg); color:var(--blue); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; }
+  .card { display:block; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 24px; text-decoration:none; color:inherit; transition:all 0.2s; }
   .card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); border-color:transparent; }
-  .card-title { font-size:16px; font-weight:700; margin-bottom:4px; }
-  .card-desc { font-size:13px; color:#64748b; }
-  .card-icon { font-size:24px; margin-bottom:8px; }
-  .footer { margin-top:32px; font-size:11px; color:#94a3b8; text-align:center; }
+  .card-label { font-size:10px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:6px; }
+  .card-label.master { color:var(--green); }
+  .card-label.project { color:var(--blue); }
+  .card-title { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .card-desc { font-size:12px; color:var(--muted); }
+  .card.coming-soon { opacity:0.5; pointer-events:none; border-style:dashed; }
+  .footer { text-align:center; font-size:11px; color:var(--dim); margin-top:48px; }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>menu ポスティング業務ドキュメント</h1>
-  <div class="sub">業務フロー・マニュアルの最新版</div>
+<div class="header">
+  <h1>adrea-ops</h1>
+  <div class="header-sub">アドレア 業務ナレッジベース</div>
+</div>
+<div class="main">
 
-  <a class="card" href="flowchart.html">
-    <div class="card-icon">&#x1F5FA;</div>
-    <div class="card-title">業務フローチャート</div>
-    <div class="card-desc">プロジェクト型フロー / 定常業務 / 随時業務の全体像</div>
-  </a>
+  <div class="section">
+    <div class="section-title"><div class="icon icon-master">M</div>マスタールール</div>
+    <div class="grid">
+      <a class="card" href="master/legal/index.html">
+        <div class="card-label master">MASTER</div>
+        <div class="card-title">法務・法令ガイド</div>
+        <div class="card-desc">広告代理事業に関連する法律・規制の整理</div>
+      </a>
+      <a class="card coming-soon" href="#">
+        <div class="card-label master">MASTER</div>
+        <div class="card-title">社内規定</div>
+        <div class="card-desc">準備中 ─ 社内規定・ガイドラインを追加予定</div>
+      </a>
+      <a class="card coming-soon" href="#">
+        <div class="card-label master">MASTER</div>
+        <div class="card-title">広告事業部 情報</div>
+        <div class="card-desc">準備中 ─ 組織・体制・ツール情報を追加予定</div>
+      </a>
+    </div>
+  </div>
 
-  <a class="card" href="manual.html">
-    <div class="card-icon">&#x1F4CB;</div>
-    <div class="card-title">業務マニュアル</div>
-    <div class="card-desc">各タスクの担当者・手順・INPUT/OUTPUT・注意点</div>
-  </a>
+  <div class="section">
+    <div class="section-title"><div class="icon icon-project">P</div>プロジェクト</div>
+    <div class="grid">
+      <a class="card" href="projects/posting-optimization/index.html">
+        <div class="card-label project">PROJECT</div>
+        <div class="card-title">ポスティング最適化</div>
+        <div class="card-desc">業務フロー・マニュアル・分析レポート</div>
+      </a>
+    </div>
+  </div>
 
-  <div class="footer">アドレア ポスティングチーム</div>
+  <div class="footer">adrea-ops ─ アドレア広告事業部</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法務・法令ガイド - adrea-ops</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#fff; --surface:#f7f8fa; --border:#e2e8f0; --border-light:#edf2f7; --text:#1a202c; --muted:#64748b; --dim:#94a3b8; --green:#059669; --green-bg:#ecfdf5; --blue:#2563eb; --blue-bg:#eff6ff; --orange:#ea580c; --orange-bg:#fff7ed; --rose:#e11d48; --rose-bg:#fff1f2; --yellow-bg:rgba(245,158,11,0.08); --radius:12px; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Noto Sans JP',sans-serif; line-height:1.7; }
+  .header { background:linear-gradient(135deg,#064e3b,#059669); color:#fff; padding:40px 48px 32px; }
+  .breadcrumb { font-size:12px; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+  .breadcrumb a { color:rgba(255,255,255,0.7); text-decoration:none; }
+  .breadcrumb a:hover { color:#fff; }
+  .header h1 { font-size:24px; font-weight:900; }
+  .header-sub { font-size:13px; color:rgba(255,255,255,0.6); margin-top:4px; }
+  .main { max-width:880px; margin:0 auto; padding:40px 32px 80px; }
+  .intro { font-size:13px; color:var(--muted); margin-bottom:32px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); }
+  .law-section { margin-bottom:40px; }
+  .law-section-title { font-size:16px; font-weight:800; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--border); }
+  .law-card { border:1px solid var(--border); border-radius:var(--radius); margin-bottom:16px; overflow:hidden; }
+  .law-header { display:flex; align-items:center; gap:12px; padding:16px 24px; background:var(--surface); border-bottom:1px solid var(--border); cursor:pointer; }
+  .law-header h3 { font-size:15px; font-weight:700; flex:1; }
+  .law-tag { font-size:10px; font-weight:700; padding:2px 8px; border-radius:4px; white-space:nowrap; }
+  .tag-critical { background:var(--rose-bg); color:var(--rose); }
+  .tag-important { background:var(--orange-bg); color:var(--orange); }
+  .tag-reference { background:var(--blue-bg); color:var(--blue); }
+  .law-body { padding:20px 24px; }
+  .law-body p { font-size:13px; margin-bottom:12px; }
+  .law-body .point-label { font-size:11px; font-weight:700; color:var(--dim); letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .law-body ul { list-style:none; padding:0; margin-bottom:16px; }
+  .law-body li { font-size:13px; line-height:1.7; padding:4px 0 4px 16px; position:relative; }
+  .law-body li::before { content:'・'; position:absolute; left:0; color:var(--dim); }
+  .penalty-box { background:var(--rose-bg); border:1px solid rgba(225,29,72,0.15); border-radius:8px; padding:12px 16px; margin-bottom:16px; }
+  .penalty-box .penalty-label { font-size:11px; font-weight:700; color:var(--rose); margin-bottom:4px; }
+  .penalty-box p { font-size:12px; margin:0; }
+  .practice-box { background:var(--green-bg); border:1px solid rgba(5,150,105,0.15); border-radius:8px; padding:12px 16px; }
+  .practice-box .practice-label { font-size:11px; font-weight:700; color:var(--green); margin-bottom:4px; }
+  .practice-box p, .practice-box li { font-size:12px; }
+  .practice-box ul { margin:0; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="breadcrumb"><a href="../../index.html">adrea-ops</a> / master /</div>
+  <h1>法務・法令ガイド</h1>
+  <div class="header-sub">広告代理事業に関連する日本の法律・規制の整理</div>
+</div>
+<div class="main">
+
+<div class="intro">
+  本ページは、事業会社内の広告代理部門として日常業務で遵守すべき法律を整理したものです。各法律の概要・広告業務との関連・実務上の注意点をまとめています。法的判断が必要な場合は必ず法務部門に確認してください。
+</div>
+
+<!-- ========================================== -->
+<div class="law-section">
+  <div class="law-section-title">広告表示に関する法律</div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>景品表示法（不当景品類及び不当表示防止法）</h3><span class="law-tag tag-critical">最重要</span></div>
+    <div class="law-body">
+      <p>消費者を誤認させる不当な表示や、過大な景品提供を規制する法律。広告制作において最も頻繁に関わる。</p>
+      <div class="point-label">広告業務との関連</div>
+      <ul>
+        <li><strong>優良誤認表示（第5条1号）</strong>：商品・サービスの品質や内容を実際よりも著しく優良と示す表示。「No.1」「最安値」等の根拠なき表記</li>
+        <li><strong>有利誤認表示（第5条2号）</strong>：価格や取引条件を実際よりも著しく有利と誤認させる表示。「通常価格○円→特別価格○円」の二重価格表示</li>
+        <li><strong>景品規制</strong>：クーポン・キャッシュバック等は「景品類」に該当する場合がある。取引価額の20倍または10万円のいずれか低い方が上限（一般懸賞）</li>
+      </ul>
+      <div class="penalty-box"><div class="penalty-label">違反時の制裁</div><p>措置命令（公表）、課徴金（対象商品売上の3%）、刑事罰あり</p></div>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>クーポン金額設定時は景品規制の上限を確認する</li>
+          <li>「初回限定」「期間限定」等の条件を明示する</li>
+          <li>CR内の数値訴求（○%OFF等）は根拠資料を保管する</li>
+          <li>比較広告は客観的データに基づき、公正な比較方法で行う</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>薬機法（医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律）</h3><span class="law-tag tag-important">重要</span></div>
+    <div class="law-body">
+      <p>医薬品・医療機器・化粧品・健康食品等の広告規制。フードデリバリー事業では直接該当しにくいが、健康訴求をする場合に注意が必要。</p>
+      <div class="point-label">広告業務との関連</div>
+      <ul>
+        <li>食品で「○○に効く」「○○が治る」等の効能効果を標榜すると未承認医薬品の広告に該当する可能性</li>
+        <li>「健康」「ヘルシー」程度の一般的表現は通常問題ないが、具体的な疾病名の記載はNG</li>
+      </ul>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>健康関連の訴求をCRに含める場合は法務に事前確認</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>特定商取引法</h3><span class="law-tag tag-important">重要</span></div>
+    <div class="law-body">
+      <p>通信販売等の取引類型を規制。フードデリバリーアプリは通信販売に該当し、広告表示義務がある。</p>
+      <div class="point-label">広告業務との関連</div>
+      <ul>
+        <li>価格・送料・支払方法・返品条件等の表示義務</li>
+        <li>誇大広告の禁止（第12条）</li>
+        <li>ポスティングチラシ自体は「広告」であり、アプリ内表示と矛盾しないよう注意</li>
+      </ul>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>チラシにクーポン条件（有効期限・最低注文金額・対象エリア等）を明記する</li>
+          <li>「詳細はアプリで」とする場合もクーポン基本条件はチラシ上に記載</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<div class="law-section">
+  <div class="law-section-title">個人情報・プライバシーに関する法律</div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>個人情報保護法</h3><span class="law-tag tag-important">重要</span></div>
+    <div class="law-body">
+      <p>個人情報の取得・利用・第三者提供を規制。エリアデータ・顧客データの取り扱いに関わる。</p>
+      <div class="point-label">広告業務との関連</div>
+      <ul>
+        <li>ポスティングは住所単位の「エリア」への配布であり、個人を特定しない限り個人情報には該当しない</li>
+        <li>顧客データ（注文履歴・LTV等）を分析に使う場合、委託元（menu社）との契約範囲内での利用に限る</li>
+        <li>データの持ち出し・外部共有時は契約上の制約を確認</li>
+      </ul>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>分析レポートに個人を特定できる情報を含めない</li>
+          <li>エリア別データは統計情報として扱い、少数サンプル（5件未満等）は集計を避ける</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<div class="law-section">
+  <div class="law-section-title">ポスティング固有の規制</div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>住居侵入罪（刑法130条）との関係</h3><span class="law-tag tag-important">重要</span></div>
+    <div class="law-body">
+      <p>ポスティング行為自体は原則として適法だが、「チラシ投函お断り」の掲示がある場合や、オートロック内への立入りは住居侵入罪に問われるリスクがある。</p>
+      <div class="point-label">判例・実務</div>
+      <ul>
+        <li>最高裁判例（2008年）：政治ビラの投函で住居侵入罪が成立した事例あり</li>
+        <li>商業チラシについては投函行為のみで立件された例は少ないが、管理規約違反とのトラブルは発生しうる</li>
+      </ul>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>JBF/アトとの契約で「投函禁止物件への配布禁止」を明記</li>
+          <li>クレーム発生時の対応フローを整備（→業務マニュアル参照）</li>
+          <li>マンション管理組合への事前許可取得の仕組み（JBF/アト側で対応）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>屋外広告物条例</h3><span class="law-tag tag-reference">参考</span></div>
+    <div class="law-body">
+      <p>各自治体が定める屋外広告物に関する条例。ポスティングチラシは「屋外広告物」には通常該当しないが、ポスターや看板を併用する場合は確認が必要。</p>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>チラシのポスティング自体は屋外広告物条例の対象外</li>
+          <li>街頭サンプリングを行う場合は道路使用許可（道路交通法77条）が必要</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>廃棄物処理法との関係</h3><span class="law-tag tag-reference">参考</span></div>
+    <div class="law-body">
+      <p>ポスティングチラシの大量廃棄が環境問題として指摘されることがある。法的義務ではないが、社会的責任として配慮が望ましい。</p>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>FSC認証紙の使用やリサイクル素材の採用を検討</li>
+          <li>クレーム対応時に環境配慮の取り組みを説明できるようにしておく</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<div class="law-section">
+  <div class="law-section-title">知的財産に関する法律</div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>著作権法</h3><span class="law-tag tag-important">重要</span></div>
+    <div class="law-body">
+      <p>クリエイティブ制作における著作権の帰属と利用許諾。デザイナーとの契約で権利関係を明確にする必要がある。</p>
+      <div class="point-label">広告業務との関連</div>
+      <ul>
+        <li>デザイナーが制作したCRの著作権は原則として制作者（デザイナー）に帰属</li>
+        <li>フリー素材・ストックフォト利用時のライセンス条件確認</li>
+        <li>他社CRの模倣は著作権侵害・不正競争防止法違反のリスク</li>
+      </ul>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>デザイン委託契約で著作権の譲渡または利用許諾範囲を明記</li>
+          <li>他社クリエイティブの回収・分析は参考目的に留め、模倣しない</li>
+          <li>フォント・写真素材のライセンスを商用利用可能なものに限定</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>商標法</h3><span class="law-tag tag-reference">参考</span></div>
+    <div class="law-body">
+      <p>「menu」のブランドロゴ・商標の使用ルール。クライアントブランドの適切な使用を確保する。</p>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>menu社のブランドガイドラインに従ったロゴ使用</li>
+          <li>競合他社の商標をCR内で使用しない</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<div class="law-section">
+  <div class="law-section-title">労務・下請に関する法律</div>
+
+  <div class="law-card">
+    <div class="law-header"><h3>下請法（下請代金支払遅延等防止法）</h3><span class="law-tag tag-important">重要</span></div>
+    <div class="law-body">
+      <p>JBF/アト・デザイナー等の外注先との取引に適用される可能性がある。資本金要件を満たす場合、発注書面の交付義務等が生じる。</p>
+      <div class="point-label">広告業務との関連</div>
+      <ul>
+        <li>発注時の書面交付義務（3条書面）</li>
+        <li>下請代金の支払期日（受領日から60日以内）</li>
+        <li>不当な減額・返品・やり直しの禁止</li>
+      </ul>
+      <div class="practice-box"><div class="practice-label">実務上の注意点</div>
+        <ul>
+          <li>JBF/アトへの発注は発注管理シートで書面化されているか確認</li>
+          <li>請求書の支払い遅延が発生しないよう管理（→請求書回収・管理タスク参照）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

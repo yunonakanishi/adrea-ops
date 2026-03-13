@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>menu ポスティング業務フローチャート</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f9fc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --border-light: #edf2f7;
+    --text: #1a202c;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+
+    --menu-color: #059669;
+    --menu-bg: #ecfdf5;
+    --menu-border: #a7f3d0;
+    --internal-color: #2563eb;
+    --internal-bg: #eff6ff;
+    --internal-border: #bfdbfe;
+    --jbf-color: #ea580c;
+    --jbf-bg: #fff7ed;
+    --jbf-border: #fed7aa;
+    --design-color: #7c3aed;
+    --design-bg: #f5f3ff;
+    --design-border: #ddd6fe;
+
+    --phase1: #3b82f6;
+    --phase1-bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    --phase2: #8b5cf6;
+    --phase2-bg: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    --milestone: #059669;
+    --milestone-bg: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === Header === */
+  .header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 40%;
+    background: linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.08) 100%);
+    pointer-events: none;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-meta {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .main { padding: 40px 56px 80px; max-width: 1400px; margin: 0 auto; }
+
+  /* === Section === */
+  .section { margin-bottom: 56px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--text);
+    color: #fff;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+
+  /* === Phase Block === */
+  .phase-block {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 28px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+
+  .phase-header.phase1 { background: var(--phase1-bg); color: var(--phase1); border-bottom: 2px solid rgba(59,130,246,0.15); }
+  .phase-header.phase2 { background: var(--phase2-bg); color: var(--phase2); border-bottom: 2px solid rgba(139,92,246,0.15); }
+  .phase-header.milestone-header { background: var(--milestone-bg); color: var(--milestone); border-bottom: 2px solid rgba(5,150,105,0.15); }
+
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .phase-header.phase1 .phase-badge { background: rgba(59,130,246,0.12); }
+  .phase-header.phase2 .phase-badge { background: rgba(139,92,246,0.12); }
+  .phase-header.milestone-header .phase-badge { background: rgba(5,150,105,0.12); }
+
+  .phase-body { padding: 8px 16px 16px; }
+
+  /* === Timeline Row === */
+  .timeline-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+    min-height: 80px;
+  }
+
+  .timeline-row + .timeline-row {
+    border-top: 1px solid var(--border-light);
+  }
+
+  /* Timing column */
+  .timing-col {
+    width: 100px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 8px;
+    position: relative;
+  }
+
+  .timing-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    white-space: nowrap;
+    z-index: 2;
+    position: relative;
+  }
+
+  .timing-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  /* Vertical connector line */
+  .timing-col::after {
+    content: '';
+    position: absolute;
+    top: 42px;
+    bottom: -1px;
+    left: 50%;
+    width: 2px;
+    background: var(--border);
+    z-index: 1;
+  }
+
+  .timeline-row:last-child .timing-col::after {
+    display: none;
+  }
+
+  /* Task columns */
+  .tasks-area {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 12px 12px 12px 20px;
+    position: relative;
+  }
+
+  /* Arrow from timing to tasks */
+  .tasks-area::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 26px;
+    width: 16px;
+    height: 2px;
+    background: var(--border);
+  }
+
+  /* === Task Card === */
+  .task-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .task-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: transparent;
+  }
+
+  .task-card.menu { border-left: 4px solid var(--menu-color); }
+  .task-card.menu:hover { background: var(--menu-bg); }
+  .task-card.internal { border-left: 4px solid var(--internal-color); }
+  .task-card.internal:hover { background: var(--internal-bg); }
+  .task-card.jbf { border-left: 4px solid var(--jbf-color); }
+  .task-card.jbf:hover { background: var(--jbf-bg); }
+  .task-card.design { border-left: 4px solid var(--design-color); }
+  .task-card.design:hover { background: var(--design-bg); }
+
+  .task-card .owner-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    width: fit-content;
+  }
+
+  .task-card.menu .owner-tag { background: var(--menu-bg); color: var(--menu-color); }
+  .task-card.internal .owner-tag { background: var(--internal-bg); color: var(--internal-color); }
+  .task-card.jbf .owner-tag { background: var(--jbf-bg); color: var(--jbf-color); }
+  .task-card.design .owner-tag { background: var(--design-bg); color: var(--design-color); }
+
+  .task-card .task-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .task-card .task-io {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    display: flex;
+    gap: 4px;
+  }
+
+  .task-card .task-io .io-label {
+    font-weight: 700;
+    color: var(--text-dim);
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .task-card .pair-ref {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-style: italic;
+    padding-top: 4px;
+    border-top: 1px dashed var(--border-light);
+    margin-top: 2px;
+  }
+
+  .task-card.empty-card {
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+  .task-card.empty-card:hover {
+    box-shadow: none;
+    transform: none;
+    background: transparent;
+  }
+
+  /* Stacked tasks in one cell */
+  .task-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* === Milestone === */
+  .milestone-row {
+    background: var(--milestone-bg);
+    border-radius: var(--radius-sm);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 8px 0;
+  }
+
+  .milestone-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--milestone);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(5,150,105,0.3);
+  }
+
+  .milestone-content .milestone-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--milestone);
+  }
+
+  .milestone-content .milestone-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .milestone-timing {
+    margin-left: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--milestone);
+    background: rgba(5,150,105,0.1);
+    padding: 6px 18px;
+    border-radius: 8px;
+  }
+
+  /* === Routine Grid === */
+  .routine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+
+  .routine-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .routine-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .freq-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--internal-color);
+    background: var(--internal-bg);
+    padding: 4px 12px;
+    border-radius: 6px;
+    width: fit-content;
+  }
+
+  .freq-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--internal-color);
+    border-radius: 50%;
+  }
+
+  .routine-card .card-name { font-size: 15px; font-weight: 700; }
+  .routine-card .card-io { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .routine-card .card-io .io-label { font-weight: 700; color: var(--text-dim); font-size: 10px; }
+
+  /* === Adhoc === */
+  .adhoc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+
+  .adhoc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid #e11d48;
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .adhoc-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .adhoc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #e11d48;
+    background: #fff1f2;
+    padding: 4px 12px;
+    border-radius: 6px;
+    width: fit-content;
+  }
+
+  .adhoc-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #e11d48;
+    border-radius: 50%;
+  }
+
+  .adhoc-card .card-name { font-size: 15px; font-weight: 700; }
+  .adhoc-card .card-io { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .adhoc-card .card-io .io-label { font-weight: 700; color: var(--text-dim); font-size: 10px; }
+
+  /* === Note === */
+  .note-section {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .note-header {
+    background: linear-gradient(135deg, #fff7ed 0%, #fed7aa40 100%);
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--jbf-color);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .note-body {
+    padding: 20px 24px;
+  }
+
+  .note-body li {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-left: 16px;
+    padding: 4px 0;
+  }
+
+  .note-body li::marker {
+    color: var(--jbf-color);
+  }
+
+  /* === Connection Indicators === */
+  .conn-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  .conn-a { background: #fef3c7; color: #b45309; }
+  .conn-b { background: #ede9fe; color: #6d28d9; }
+  .conn-c { background: #d1fae5; color: #047857; }
+  .conn-d { background: #fce7f3; color: #be185d; }
+
+  /* Flow arrow between phases */
+  .flow-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+  }
+
+  .flow-arrow {
+    width: 2px;
+    height: 32px;
+    background: var(--border);
+    position: relative;
+  }
+
+  .flow-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--border);
+  }
+
+  @media (max-width: 1100px) {
+    .tasks-area { grid-template-columns: repeat(2, 1fr); }
+    .header, .main { padding-left: 24px; padding-right: 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .tasks-area { grid-template-columns: 1fr; }
+    .timing-col { width: 80px; min-width: 80px; }
+    .header { padding: 32px 16px 28px; }
+    .header h1 { font-size: 22px; }
+    .main { padding: 24px 16px 64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>menu ポスティング業務フロー</h1>
+  <div class="header-meta">X = 配布開始日 ／ 各タスクの詳細手順はタスクカードを参照</div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--menu-color)"></div>menu社</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--internal-color)"></div>アドレア（担当：川野）</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--jbf-color)"></div>JBF/アト</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--design-color)"></div>デザイナー</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ================================ -->
+  <!-- SECTION 1: プロジェクト型フロー -->
+  <!-- ================================ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">プロジェクト型フロー</span>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-block">
+      <div class="phase-header phase1">
+        <span class="phase-badge">Phase 1</span>
+        企画
+      </div>
+      <div class="phase-body">
+
+        <!-- X-60 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-60日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card menu">
+              <div class="owner-tag">menu社</div>
+              <div class="task-name">プロモプラン策定 要件共有</div>
+              <div class="task-io"><span class="io-label">OUT</span>予算・エリア・許容CPA・獲得件数</div>
+            </div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（浅葉・川野）</div>
+              <div class="task-name">要件 受領・確認</div>
+              <div class="task-io"><span class="io-label">IN</span>menu社からの要件</div>
+              <div class="task-io"><span class="io-label">OUT</span>不明点あれば確認</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-50 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-50日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-stack">
+              <div class="task-card internal">
+                <div class="owner-tag">アドレア（浅葉・川野）</div>
+                <div class="task-name">予算プランニング＋エリアプランニング</div>
+                <div class="task-io"><span class="io-label">IN</span>前月CPA実績・CR効果・受領要件</div>
+                <div class="task-io"><span class="io-label">OUT</span>BTLプランニングシート・承認依頼シート</div>
+              </div>
+              <div class="task-card internal">
+                <div class="owner-tag">アドレア（川野）</div>
+                <div class="task-name">オフライン見積 依頼</div>
+                <div class="task-io"><span class="io-label">依頼先</span>JBF/アト</div>
+                <div class="task-io"><span class="io-label">OUT</span>ターゲットエリア・最大可能部数を共有</div>
+              </div>
+              <div class="task-card internal">
+                <div class="owner-tag">アドレア（川野）</div>
+                <div class="task-name">デザイン 依頼</div>
+                <div class="task-io"><span class="io-label">依頼先</span>デザイナー</div>
+                <div class="task-io"><span class="io-label">OUT</span>入稿期限・初稿日・入稿日を共有</div>
+              </div>
+              <div class="task-card internal">
+                <div class="owner-tag">アドレア（川野）</div>
+                <div class="task-name">承認依頼 提出</div>
+                <div class="task-io"><span class="io-label">依頼先</span>menu社</div>
+                <div class="task-io"><span class="io-label">OUT</span>BTLプランニングシートをmenuに提出</div>
+              </div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-45 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-45日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card menu">
+              <div class="owner-tag">menu社</div>
+              <div class="task-name">menu承認</div>
+              <div class="task-io"><span class="io-label">OUT</span>承認済プラン（SlackでOK）</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card jbf">
+              <div class="owner-tag">JBF/アト</div>
+              <div class="task-name">見積 回答</div>
+              <div class="task-io"><span class="io-label">OUT</span>配布単価・印刷単価・納品日</div>
+            </div>
+            <div class="task-card design">
+              <div class="owner-tag">デザイナー</div>
+              <div class="task-name">デザイン 初稿提出</div>
+              <div class="task-io"><span class="io-label">OUT</span>デザイン初稿データ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- X-45 承認後 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-45日</div>
+            <div class="timing-sub">承認後</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">クーポン発行 申請</div>
+              <div class="task-io"><span class="io-label">依頼先</span>menu社</div>
+              <div class="task-io"><span class="io-label">OUT</span>企画名・コード発番数・発行日・使用期限</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-42 -->
+        <div class="timeline-row" style="border-bottom:none;">
+          <div class="timing-col">
+            <div class="timing-label">X-42日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card menu">
+              <div class="owner-tag">menu社</div>
+              <div class="task-name">クーポンコード 発行</div>
+              <div class="task-io"><span class="io-label">OUT</span>クーポンコード一覧（Slackスレッド）</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Flow Connector -->
+    <div class="flow-connector">
+      <div class="flow-arrow"></div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-block">
+      <div class="phase-header phase2">
+        <span class="phase-badge">Phase 2</span>
+        発注・入稿
+      </div>
+      <div class="phase-body">
+
+        <!-- X-36 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-36日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">発注 連絡</div>
+              <div class="task-io"><span class="io-label">依頼先</span>JBF/アト</div>
+              <div class="task-io"><span class="io-label">OUT</span>施策名・金額・部数・エリア・配布期間</div>
+            </div>
+            <div class="task-card jbf">
+              <div class="owner-tag">JBF/アト</div>
+              <div class="task-name">発注 受領・確定</div>
+              <div class="task-io"><span class="io-label">OUT</span>発注確定</div>
+            </div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-35 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-35日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">入稿データ作成</div>
+              <div class="task-io"><span class="io-label">IN</span>エリア選定結果・デザイン・クーポン</div>
+              <div class="task-io"><span class="io-label">OUT</span>発注管理シート（エリア×デザイン×クーポン）</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-31 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-31日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">入稿データ確認（Wチェック）</div>
+              <div class="task-io"><span class="io-label">IN</span>発注管理シート</div>
+              <div class="task-io"><span class="io-label">OUT</span>確認済入稿データ</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-30 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-30日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">入稿データ送付</div>
+              <div class="task-io"><span class="io-label">送付先</span>JBF/アト</div>
+              <div class="task-io"><span class="io-label">OUT</span>デザイン・クーポンコード・配布エリア</div>
+            </div>
+            <div class="task-card jbf">
+              <div class="owner-tag">JBF/アト</div>
+              <div class="task-name">入稿 受領</div>
+              <div class="task-io"><span class="io-label">IN</span>入稿データ一式</div>
+            </div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-30 サンプル依頼 -->
+        <div class="timeline-row">
+          <div class="timing-col">
+            <div class="timing-label">X-30日</div>
+            <div class="timing-sub">入稿後</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">サンプル依頼</div>
+              <div class="task-io"><span class="io-label">依頼先</span>JBF/アト</div>
+            </div>
+            <div class="task-card empty-card"></div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+        <!-- X-3 -->
+        <div class="timeline-row" style="border-bottom:none;">
+          <div class="timing-col">
+            <div class="timing-label">X-3日</div>
+          </div>
+          <div class="tasks-area">
+            <div class="task-card empty-card"></div>
+            <div class="task-card internal">
+              <div class="owner-tag">アドレア（川野）</div>
+              <div class="task-name">サンプル確認</div>
+              <div class="task-io"><span class="io-label">OUT</span>確認OK</div>
+            </div>
+            <div class="task-card jbf">
+              <div class="owner-tag">JBF/アト</div>
+              <div class="task-name">サンプル送付</div>
+              <div class="task-io"><span class="io-label">OUT</span>印刷サンプル</div>
+            </div>
+            <div class="task-card empty-card"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Flow Connector -->
+    <div class="flow-connector">
+      <div class="flow-arrow"></div>
+    </div>
+
+    <!-- Milestone -->
+    <div class="milestone-row">
+      <div class="milestone-icon">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="milestone-content">
+        <div class="milestone-title">配布開始 → 定常業務フェーズへ移行</div>
+        <div class="milestone-sub">オフライン効果表でCV発生を確認</div>
+      </div>
+      <div class="milestone-timing">X日</div>
+    </div>
+
+  </div>
+
+  <!-- ================================ -->
+  <!-- SECTION 2: 定常業務              -->
+  <!-- ================================ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">定常業務</span>
+    </div>
+
+    <div class="routine-grid">
+      <div class="routine-card">
+        <div class="freq-badge">毎日</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">効果計測</div>
+        <div class="card-io"><span class="io-label">IN </span>デイリー実績</div>
+        <div class="card-io"><span class="io-label">OUT </span>着予更新済の月次効果表</div>
+      </div>
+      <div class="routine-card">
+        <div class="freq-badge">毎週月曜 17:30〆</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">事業運営レポート提出</div>
+        <div class="card-io"><span class="io-label">IN </span>当月実績</div>
+        <div class="card-io"><span class="io-label">OUT </span>menu提出用レポート</div>
+      </div>
+      <div class="routine-card">
+        <div class="freq-badge">毎週火曜 14:00</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">ユーザープロモ定例</div>
+        <div class="card-io"><span class="io-label">IN </span>週次数値・分析</div>
+        <div class="card-io"><span class="io-label">OUT </span>報告完了・ネクストアクション</div>
+      </div>
+      <div class="routine-card">
+        <div class="freq-badge">毎週水曜 12:00</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">グラフィック定例</div>
+        <div class="card-io"><span class="io-label">IN </span>A/Bテスト結果・入稿スケジュール</div>
+        <div class="card-io"><span class="io-label">OUT </span>メインデザイン選定・検証計画</div>
+      </div>
+      <div class="routine-card">
+        <div class="freq-badge">毎月第1週</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">請求書回収・管理</div>
+        <div class="card-io"><span class="io-label">IN </span>各媒体社からの請求書</div>
+        <div class="card-io"><span class="io-label">OUT </span>請求書管理表 記入完了</div>
+      </div>
+      <div class="routine-card">
+        <div class="freq-badge">随時</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（門井）</div>
+        <div class="card-name">他社クリエイティブの回収</div>
+        <div class="card-io"><span class="io-label">OUT </span>ポスティングから回収した他社のクリエイティブ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================ -->
+  <!-- SECTION 3: 随時業務              -->
+  <!-- ================================ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">随時業務</span>
+    </div>
+
+    <div class="adhoc-grid">
+      <div class="adhoc-card">
+        <div class="adhoc-badge">随時対応</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">ポスティングクレーム対応</div>
+        <div class="card-io"><span class="io-label">IN </span>クレーム内容（管理シート）</div>
+        <div class="card-io"><span class="io-label">OUT </span>JBF/アト対応策 → CS部門へ共有</div>
+      </div>
+      <div class="adhoc-card">
+        <div class="adhoc-badge">随時対応</div>
+        <div class="owner-tag" style="background:var(--internal-bg);color:var(--internal-color);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;width:fit-content;">アドレア（川野）</div>
+        <div class="card-name">menu法務確認</div>
+        <div class="card-io"><span class="io-label">IN </span>確認対象のCR文言・仕様</div>
+        <div class="card-io"><span class="io-label">OUT </span>法務回答 → CR反映</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================ -->
+  <!-- 課題メモ                         -->
+  <!-- ================================ -->
+  <div class="note-section">
+    <div class="note-header">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      現行運用の課題メモ（ヒアリングより）
+    </div>
+    <div class="note-body">
+      <ul>
+        <li>プラン策定依頼の受領が理想より15日遅延 → 全工程が圧縮されがち</li>
+        <li>BTLプランニングシートと承認依頼シートの二重管理</li>
+        <li>エリアプランニングが担当者の匙加減に依存</li>
+        <li>複数SIM作成依頼でシートが爆増</li>
+        <li>menu承認遅延 → クーポン発行を承認前に先行依頼が常態化</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

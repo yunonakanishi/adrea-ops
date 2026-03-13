@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>menu ポスティング施策の改善取組み サマリー</title>
+<title>menu ポスティング施策の改善取組み</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -13,318 +13,552 @@
     --green:#059669; --green-bg:#ecfdf5;
     --orange:#ea580c; --orange-bg:#fff7ed;
     --purple:#7c3aed; --purple-bg:#f5f3ff;
+    --red:#dc2626; --red-bg:#fef2f2;
     --shadow:0 2px 8px rgba(0,0,0,0.06);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--bg); color:var(--text); font-family:'Noto Sans JP','Inter',sans-serif; line-height:1.8; }
 
-  /* Slide layout */
   .slide {
     max-width:960px; margin:24px auto;
     background:var(--surface); border-radius:16px;
     box-shadow:0 4px 20px rgba(0,0,0,0.08);
-    overflow:hidden;
+    overflow:hidden; page-break-inside:avoid;
   }
   .slide-header {
-    padding:32px 48px 24px;
+    padding:28px 48px 20px;
     border-bottom:1px solid var(--border);
     display:flex; align-items:center; gap:16px;
   }
-  .slide-num {
-    font-family:'Inter',sans-serif; font-size:32px; font-weight:800;
-    color:var(--blue); opacity:0.3; line-height:1;
-  }
+  .slide-num { font-family:'Inter',sans-serif; font-size:32px; font-weight:800; color:var(--blue); opacity:0.3; line-height:1; }
   .slide-title { font-size:22px; font-weight:900; letter-spacing:-0.5px; }
-  .slide-body { padding:32px 48px 40px; }
+  .slide-sub { font-size:13px; color:var(--muted); margin-left:auto; }
+  .slide-body { padding:28px 48px 36px; }
   .slide-body p { font-size:15px; color:#334155; margin-bottom:12px; }
-  .slide-body ul { padding-left:20px; margin-bottom:16px; }
-  .slide-body li { font-size:15px; color:#334155; margin-bottom:6px; }
+  .slide-body h3 { font-size:17px; font-weight:800; margin:24px 0 10px; }
+  .slide-body h3:first-child { margin-top:0; }
+  .slide-body ul, .slide-body ol { padding-left:20px; margin-bottom:14px; }
+  .slide-body li { font-size:14px; color:#334155; margin-bottom:5px; }
 
-  /* Cover slide */
+  /* Cover */
   .slide.cover .slide-header { display:none; }
-  .cover-inner {
-    background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);
-    color:#fff; padding:64px 56px;
-  }
+  .cover-inner { background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%); color:#fff; padding:64px 56px; }
   .cover-inner .cover-label { font-size:13px; color:rgba(255,255,255,0.5); letter-spacing:2px; margin-bottom:12px; }
   .cover-inner h1 { font-size:32px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; }
   .cover-inner .cover-meta { font-size:14px; color:rgba(255,255,255,0.6); margin-top:16px; }
 
-  /* Cards grid */
-  .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
-  .card {
-    background:var(--surface); border:1px solid var(--border); border-radius:12px;
-    padding:20px 24px; box-shadow:var(--shadow);
-  }
-  .card-title { font-size:15px; font-weight:700; margin-bottom:4px; }
-  .card-desc { font-size:13px; color:var(--muted); line-height:1.7; }
+  /* Divider slide */
+  .slide.divider .slide-header { display:none; }
+  .divider-inner { padding:48px 56px; background:linear-gradient(135deg,#f8fafc,#e2e8f0); }
+  .divider-inner .divider-num { font-family:'Inter',sans-serif; font-size:48px; font-weight:800; color:var(--blue); opacity:0.2; }
+  .divider-inner h2 { font-size:24px; font-weight:900; margin-top:4px; }
+  .divider-inner p { font-size:14px; color:var(--muted); margin-top:4px; }
 
-  /* Status */
-  .status { display:inline-flex; font-size:11px; font-weight:700; padding:3px 10px; border-radius:4px; margin-bottom:8px; }
+  /* Components */
+  .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .card-grid.cols3 { grid-template-columns:repeat(3,1fr); }
+  .card { background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+  .card-title { font-size:14px; font-weight:700; margin-bottom:4px; }
+  .card-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+
+  .status { display:inline-flex; font-size:11px; font-weight:700; padding:3px 10px; border-radius:4px; margin-bottom:6px; }
   .status-done { background:var(--green-bg); color:var(--green); }
   .status-wip { background:var(--orange-bg); color:var(--orange); }
 
-  /* Metrics */
-  .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
-  .metric {
-    background:#f8fafc; border:1px solid var(--border); border-radius:12px;
-    padding:20px; text-align:center;
-  }
-  .metric-value { font-family:'Inter',sans-serif; font-size:32px; font-weight:800; color:var(--blue); }
-  .metric-label { font-size:12px; color:var(--muted); margin-top:4px; }
-  .metric-sub { font-size:11px; color:var(--dim); }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:16px 0; }
+  .metric { background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:16px; text-align:center; }
+  .metric-value { font-family:'Inter',sans-serif; font-size:28px; font-weight:800; color:var(--blue); }
+  .metric-label { font-size:11px; color:var(--muted); margin-top:2px; }
+  .metric-sub { font-size:10px; color:var(--dim); }
 
-  /* Table */
-  table { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
-  th { background:#f8fafc; text-align:left; padding:10px 16px; font-weight:700; font-size:12px; color:var(--muted); border-bottom:2px solid var(--border); }
-  td { padding:10px 16px; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:13px; }
+  th { background:#f8fafc; text-align:left; padding:8px 14px; font-weight:700; font-size:11px; color:var(--muted); border-bottom:2px solid var(--border); }
+  td { padding:8px 14px; border-bottom:1px solid var(--border); }
 
-  /* Highlight */
-  .callout {
-    background:#f8fafc; border-left:4px solid var(--blue); border-radius:0 8px 8px 0;
-    padding:16px 20px; margin:16px 0; font-size:14px;
-  }
+  .callout { background:#f8fafc; border-left:4px solid var(--blue); border-radius:0 8px 8px 0; padding:14px 18px; margin:14px 0; font-size:14px; }
   .callout.green { border-left-color:var(--green); }
   .callout.orange { border-left-color:var(--orange); }
   .callout.purple { border-left-color:var(--purple); }
-  .callout strong { font-size:14px; }
+  .callout.red { border-left-color:var(--red); }
 
-  /* Links section */
-  .link-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
-  .link-card {
-    display:flex; align-items:center; gap:12px;
-    background:#f8fafc; border:1px solid var(--border); border-radius:10px;
-    padding:16px 20px; text-decoration:none; color:inherit;
-    transition:all 0.2s;
-  }
+  .data-table-desc { background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:16px 20px; margin:10px 0; }
+  .data-table-desc .dt-name { font-size:14px; font-weight:700; color:var(--blue); }
+  .data-table-desc .dt-rows { font-size:11px; color:var(--dim); }
+  .data-table-desc .dt-desc { font-size:13px; color:var(--muted); margin-top:4px; }
+  .data-table-desc .dt-cols { font-size:12px; color:#475569; margin-top:4px; }
+
+  .link-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  .link-card { display:flex; align-items:center; gap:10px; background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:14px 18px; text-decoration:none; color:inherit; transition:all 0.2s; }
   .link-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.1); transform:translateY(-1px); border-color:var(--blue); }
-  .link-icon { font-size:24px; flex-shrink:0; }
-  .link-card .link-title { font-size:14px; font-weight:700; }
-  .link-card .link-desc { font-size:12px; color:var(--muted); }
+  .link-icon { font-size:20px; flex-shrink:0; }
+  .link-card .link-title { font-size:13px; font-weight:700; }
+  .link-card .link-desc { font-size:11px; color:var(--muted); }
 
-  /* Timeline */
-  .tl { margin:16px 0; }
-  .tl-item { display:flex; gap:16px; margin-bottom:20px; }
+  .step-list { counter-reset:step; list-style:none; padding-left:0; }
+  .step-list li { counter-increment:step; position:relative; padding-left:36px; margin-bottom:12px; font-size:14px; }
+  .step-list li::before { content:counter(step); position:absolute; left:0; top:0; width:24px; height:24px; background:var(--blue-bg); color:var(--blue); border-radius:50%; font-family:'Inter'; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+  .tl { margin:14px 0; }
+  .tl-item { display:flex; gap:14px; margin-bottom:16px; }
   .tl-dot { width:12px; height:12px; border-radius:50%; background:var(--blue); margin-top:6px; flex-shrink:0; position:relative; }
-  .tl-item:not(:last-child) .tl-dot::after { content:''; position:absolute; top:14px; left:5px; width:2px; height:calc(100% + 14px); background:var(--border); }
+  .tl-item:not(:last-child) .tl-dot::after { content:''; position:absolute; top:14px; left:5px; width:2px; height:calc(100% + 10px); background:var(--border); }
   .tl-content { flex:1; }
-  .tl-content strong { font-size:15px; }
+  .tl-content strong { font-size:14px; }
   .tl-content p { font-size:13px; color:var(--muted); margin-top:2px; }
 
   .footer { max-width:960px; margin:0 auto 48px; padding:0 16px; font-size:12px; color:var(--dim); text-align:center; }
 
   @media (max-width:700px) {
-    .slide-header, .slide-body { padding-left:24px; padding-right:24px; }
+    .slide-header, .slide-body { padding-left:20px; padding-right:20px; }
     .card-grid, .link-grid { grid-template-columns:1fr; }
+    .card-grid.cols3 { grid-template-columns:1fr; }
     .metrics { grid-template-columns:1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============================== -->
+<!-- ================================================ -->
 <!-- COVER -->
-<!-- ============================== -->
+<!-- ================================================ -->
 <div class="slide cover">
   <div class="cover-inner">
     <div class="cover-label">PROGRESS REPORT</div>
-    <h1>menu ポスティング施策の<br>改善取組みサマリー</h1>
+    <h1>menu ポスティング施策の<br>改善取組み</h1>
     <div class="cover-meta">2026年3月 ／ アドレア デリバリーユニット 中西</div>
   </div>
 </div>
 
-<!-- ============================== -->
-<!-- 01 前提・背景 -->
-<!-- ============================== -->
+<!-- ================================================ -->
+<!-- SUMMARY 1: 背景と目的 -->
+<!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">01</div>
-    <div class="slide-title">前提・背景</div>
+    <div class="slide-title">背景と目的</div>
+    <div class="slide-sub">口頭説明用サマリー</div>
   </div>
   <div class="slide-body">
-    <p><strong>ポスティング施策とは</strong>：menuアプリの新規ユーザー獲得のために、クーポン付きの紙チラシを各エリアのポストに配布する施策です。</p>
+    <p><strong>ポスティング施策</strong>とは、menuアプリの新規ユーザーを獲得するために、クーポン付きの紙チラシを各エリアのポストに配布する施策です。全国515エリアに対し、月間数千万円規模で実施しています。</p>
 
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-value">515</div>
-        <div class="metric-label">対象エリア数</div>
-        <div class="metric-sub">全国</div>
+    <h3>これまでの課題</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">エリア選定が属人的</div>
+        <div class="card-desc">「どこに配るか」が担当者の経験と勘に依存。エリアごとの費用対効果を比較する仕組みがなかった</div>
       </div>
-      <div class="metric">
-        <div class="metric-value">約2年</div>
-        <div class="metric-label">分析対象期間</div>
-        <div class="metric-sub">2024年1月〜2026年3月</div>
+      <div class="card">
+        <div class="card-title">デザインの検証ができていない</div>
+        <div class="card-desc">どのチラシデザインが効果的かの検証ルールがなく、過去の傾向も整理されていなかった</div>
       </div>
-      <div class="metric">
-        <div class="metric-value">数千万</div>
-        <div class="metric-label">月間予算規模</div>
-        <div class="metric-sub">円</div>
+      <div class="card">
+        <div class="card-title">業務フローが暗黙知</div>
+        <div class="card-desc">企画〜配布の手順・スケジュールが担当者の頭の中にあり、引き継ぎが難しい状態だった</div>
+      </div>
+      <div class="card">
+        <div class="card-title">効果の振り返りが不十分</div>
+        <div class="card-desc">配って終わりで、次の配布計画にデータが活用されていなかった</div>
       </div>
     </div>
 
-    <p style="margin-top:24px;"><strong>なぜ改善に取り組んでいるか</strong></p>
-    <ul>
-      <li><strong>エリア選定が属人的</strong> — 「どこに配るか」が担当者の経験と勘に依存していた</li>
-      <li><strong>効果の振り返りが不十分</strong> — エリアごとの費用対効果を比較する仕組みがなかった</li>
-      <li><strong>デザインの良し悪しが不明</strong> — どのチラシが効果的かの検証ルールがなかった</li>
-      <li><strong>業務フローが暗黙知</strong> — 手順やスケジュールが担当者の頭の中にあった</li>
-    </ul>
     <div class="callout">
-      これらを解消し、<strong>「データに基づいて判断できる状態」</strong>を作ることが今回の取組みの目的です。
+      <strong>取組みの目的</strong>：これらを解消し、「データに基づいて判断できる状態」を作ること。<br>
+      具体的には、過去データの分析・業務フローの整備・判断ルールの策定を行いました。
     </div>
   </div>
 </div>
 
-<!-- ============================== -->
-<!-- 02 取組みの全体像 -->
-<!-- ============================== -->
+<!-- ================================================ -->
+<!-- SUMMARY 2: 全体サマリー -->
+<!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">02</div>
-    <div class="slide-title">取組みの全体像</div>
+    <div class="slide-title">取組みの全体像と主な成果</div>
+    <div class="slide-sub">口頭説明用サマリー</div>
   </div>
   <div class="slide-body">
-    <p>4つの領域で取組みを進めています。</p>
-
     <div class="card-grid">
       <div class="card">
         <div class="status status-done">完了</div>
-        <div class="card-title">効果測定の基盤づくり</div>
-        <div class="card-desc">CVR（反応率）・CPA（獲得単価）・LTV（顧客生涯価値）を定義し、エリア・デザイン・時期ごとに集計できる状態にした</div>
+        <div class="card-title">① 効果測定の基盤づくり</div>
+        <div class="card-desc">CVR・CPA・LTVを定義し、集計の仕組みを構築</div>
       </div>
       <div class="card">
         <div class="status status-done">完了</div>
-        <div class="card-title">エリア・競合データの整備</div>
-        <div class="card-desc">515エリアの人口・世帯・年収などの属性データを整備。競合他社のチラシも月次で回収を開始</div>
+        <div class="card-title">② エリア・競合データの整備</div>
+        <div class="card-desc">515エリアのデータベース構築、競合チラシの月次回収開始</div>
       </div>
       <div class="card">
         <div class="status status-wip">一部進行中</div>
-        <div class="card-title">業務フロー・ツールの整備</div>
-        <div class="card-desc">業務フローチャートとマニュアルを作成済み。予算配分シミュレーションツールは3月中に完成予定</div>
+        <div class="card-title">③ 業務フロー・ツールの整備</div>
+        <div class="card-desc">フロー図・マニュアル完成。予算配分ツールは3月中</div>
       </div>
       <div class="card">
         <div class="status status-wip">一部進行中</div>
-        <div class="card-title">費用対効果の改善</div>
-        <div class="card-desc">エリア優先度のランク付け完了。デザイン検証ルールの確定とクーポン額の検証が進行中</div>
+        <div class="card-title">④ 費用対効果の改善</div>
+        <div class="card-desc">エリアランク確定。デザイン検証ルール・クーポン額検証が進行中</div>
       </div>
+    </div>
+
+    <h3>分析から分かった主なポイント</h3>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-value">2.4倍</div>
+        <div class="metric-label">エリア間のCPA差</div>
+        <div class="metric-sub">Aランク 4,094円 vs C 9,641円</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">1.7倍</div>
+        <div class="metric-label">季節によるCVR差</div>
+        <div class="metric-sub">冬（12月）vs 夏（8月）</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">7.5倍</div>
+        <div class="metric-label">デザイン間のCPA差</div>
+        <div class="metric-sub">最良 vs 最悪の訴求タイプ</div>
+      </div>
+    </div>
+    <div class="callout green">
+      エリア・時期・デザインの選び方で費用対効果に大きな差があることが数字で確認できた。<br>以降のページで各領域の詳細を説明します。
     </div>
   </div>
 </div>
 
-<!-- ============================== -->
-<!-- 03 エリア分析 -->
-<!-- ============================== -->
+<!-- ================================================ -->
+<!-- DIVIDER: 領域① -->
+<!-- ================================================ -->
+<div class="slide divider">
+  <div class="divider-inner">
+    <div class="divider-num">①</div>
+    <h2>効果測定の基盤づくり</h2>
+    <p>KPIの定義と計測の仕組み</p>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域①: 効果測定の基盤 -->
+<!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">03</div>
-    <div class="slide-title">分析結果 — エリア「どこに配るべきか」</div>
+    <div class="slide-title">KPIの定義と計測基準の統一</div>
   </div>
   <div class="slide-body">
-    <p>過去2年間の実績をもとに、全515エリアを<strong>A / B / C</strong>の3ランクに分類しました。</p>
+    <p>ポスティングの効果を統一的に評価するため、3つのKPIを定義し、計測の基準を整理しました。</p>
 
+    <div class="card-grid cols3">
+      <div class="card" style="border-top:3px solid var(--blue);">
+        <div class="card-title">CVR（反応率）</div>
+        <div class="card-desc">初回購入人数 ÷ 配布枚数<br>配布1,000枚あたり何件の新規購入があったかを示す</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--green);">
+        <div class="card-title">CPA（獲得単価）</div>
+        <div class="card-desc">グロス費用 ÷ 初回購入人数<br>1人の新規ユーザーを獲得するのにかかった費用</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--purple);">
+        <div class="card-title">LTV（顧客生涯価値）</div>
+        <div class="card-desc">顧客あたりの累積売上<br>獲得したユーザーがどれだけ使い続けるかの指標</div>
+      </div>
+    </div>
+
+    <h3>CV計測の基準統一</h3>
+    <p>従来は「クーポンコードベース」（＝チラシに印刷されたコードの入力件数）でCVを数えていましたが、配布エリアと実際の注文エリアがズレるケースがありました。</p>
+    <ul>
+      <li>例：四谷エリアで配ったチラシを、秋葉原で使うケースがある</li>
+      <li>今後は<strong>注文地点ベース</strong>に統一 — 実際に注文が発生した場所でカウント</li>
+      <li>過去データも注文地点ベースで再集計し、同じ物差しで比較できるようにした</li>
+    </ul>
+
+    <h3>CPA定義の変更</h3>
     <table>
-      <tr><th>ランク</th><th>エリア数</th><th>平均CPA</th><th>平均CVR</th><th>意味</th></tr>
-      <tr><td><strong style="color:var(--green);">A</strong></td><td>171</td><td>4,094円</td><td>0.220%</td><td>費用対効果が良い。優先的に配布</td></tr>
-      <tr><td><strong style="color:var(--blue);">B</strong></td><td>172</td><td>6,278円</td><td>0.143%</td><td>標準的。条件次第で配布</td></tr>
-      <tr><td><strong style="color:var(--orange);">C</strong></td><td>172</td><td>9,641円</td><td>0.093%</td><td>費用対効果が悪い。見直し対象</td></tr>
+      <tr><th></th><th>旧定義</th><th>新定義（現行）</th></tr>
+      <tr><td><strong>費用</strong></td><td>総費用（税抜）</td><td>グロス費用（配布費+印刷費+代理店マージン25%）</td></tr>
+      <tr><td><strong>分母</strong></td><td colspan="2">初回購入人数（配達完了のみ・配布開始から90日以内）</td></tr>
     </table>
+    <p>代理店マージンを含めた「実際にかかっている費用」でCPAを算出するように変更しました。過去データも全てグロス費用ベースで再算出済みです。</p>
 
-    <div class="callout green">
-      AランクとCランクでCPAに<strong>約2.4倍の差</strong>。これまでこの差が可視化されていなかったため、ランクに基づいた配布先の見直しで改善余地がある。
+    <h3>全体の実績サマリー</h3>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-value">0.18%</div>
+        <div class="metric-label">平均CVR</div>
+        <div class="metric-sub">1,000枚あたり約1.8件</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">¥4,959</div>
+        <div class="metric-label">CPA中央値</div>
+        <div class="metric-sub">平均は¥6,438</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">502</div>
+        <div class="metric-label">配布実績エリア</div>
+        <div class="metric-sub">全515エリア中</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ============================== -->
-<!-- 04 時期・デザイン分析 -->
-<!-- ============================== -->
+<!-- ================================================ -->
+<!-- DIVIDER: 領域② -->
+<!-- ================================================ -->
+<div class="slide divider">
+  <div class="divider-inner">
+    <div class="divider-num">②</div>
+    <h2>エリア・競合データの整備</h2>
+    <p>判断に使えるデータの収集と構造化</p>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域②: データ整備 -->
+<!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">04</div>
-    <div class="slide-title">分析結果 — 時期とデザイン</div>
+    <div class="slide-title">整備したデータベース</div>
   </div>
   <div class="slide-body">
-    <p><strong>時期 —「いつ配るべきか」</strong></p>
-    <ul>
-      <li><strong>反応が良い時期</strong>：12月〜2月（冬場）— 12月が年間で最も効率が良い</li>
-      <li><strong>反応が悪い時期</strong>：7月〜10月（夏場）— 8月が年間で最も効率が悪い</li>
-      <li>冬場と夏場でCVRに<strong>約1.7倍の差</strong></li>
-    </ul>
+    <p>分析と運用判断の基盤として、6つのデータテーブルを整備しました。</p>
 
-    <p style="margin-top:24px;"><strong>デザイン —「何を配るべきか」</strong></p>
-    <table>
-      <tr><th>訴求タイプ</th><th>CVR</th><th>CPA</th><th>特徴</th></tr>
-      <tr><td>金券系</td><td>0.180%</td><td><strong style="color:var(--green);">4,594円</strong></td><td>CPA最良。コストと反応率のバランスが最も良い</td></tr>
-      <tr><td>スクラッチ・くじ系</td><td><strong style="color:var(--green);">0.200%</strong></td><td>5,535円</td><td>CVR最高だが印刷コストが高い</td></tr>
-      <tr><td>お札系</td><td>0.166%</td><td>5,008円</td><td>安定した実績</td></tr>
-      <tr><td>カード系</td><td>0.151%</td><td>5,455円</td><td>—</td></tr>
-      <tr><td>ハガキ系</td><td>0.110%</td><td>7,605円</td><td>効率が最も悪い</td></tr>
-    </table>
-
-    <div class="callout orange">
-      <strong>今後の課題</strong>：過去データでは「どのタイプが良いか」は分かるが「何が効いているか」までは分からない。ABテストのルールを整備し、1施策1要素ずつ検証していく予定。
+    <h3>エリア属性データ</h3>
+    <div class="data-table-desc">
+      <div class="dt-name">エリアマスタ <span class="dt-rows">515行 × 206列</span></div>
+      <div class="dt-desc">各エリアの人口動態・世帯構成・年収分布などの属性情報</div>
+      <div class="dt-cols">主な項目：人口、世帯数、年齢別人口比率（5歳刻み）、1人世帯比率、年収帯別世帯数、持ち家/借家比率、緯度経度</div>
     </div>
+    <div class="data-table-desc">
+      <div class="dt-name">配布可能エリアマスタ <span class="dt-rows">1,372行</span></div>
+      <div class="dt-desc">各エリアの最大配布可能部数・配布単価。コスト計算の基礎データ</div>
+      <div class="dt-cols">主な項目：最大配布可能部数、配布単価、配布費、都道府県、市区町村</div>
+    </div>
+
+    <h3>実績データ</h3>
+    <div class="data-table-desc">
+      <div class="dt-name">施策×エリア別 配布実績 <span class="dt-rows">13,299行</span></div>
+      <div class="dt-desc">過去2年分の施策ごと・エリアごとの配布部数・費用・CV数。エリア評価の主要データソース</div>
+      <div class="dt-cols">主な項目：配布部数、グロス費用、CPA、初回購入人数、配布開始日</div>
+    </div>
+    <div class="data-table-desc">
+      <div class="dt-name">施策×クーポンコード別 実績 <span class="dt-rows">10,590行</span></div>
+      <div class="dt-desc">クーポンコードごとの実績。デザイン情報を持つためデザイン評価に使用</div>
+      <div class="dt-cols">主な項目：デザイン名、配布部数、グロス費用、CPA、2回目購入人数</div>
+    </div>
+    <div class="data-table-desc">
+      <div class="dt-name">コード×エリア別 CV数 <span class="dt-rows">41,028行</span></div>
+      <div class="dt-desc">上記2つのブリッジテーブル。デザイン×エリアのクロス分析（ABテスト検証）に使用</div>
+    </div>
+    <div class="data-table-desc">
+      <div class="dt-name">エリア別 注文実績 <span class="dt-rows">1,569行</span></div>
+      <div class="dt-desc">ポスティングに限らない全注文の集計。LTVの参考値として使用</div>
+      <div class="dt-cols">主な項目：平均単価、クーポン利用率、1ユーザーあたり注文回数、平均LTV</div>
+    </div>
+
+    <h3>競合データの収集</h3>
+    <p>自社のポスティング配布時に、同じエリアに投函されている<strong>競合他社のチラシを月次で回収</strong>しています。回収は現場担当（門井）が実施。競合の訴求内容・クーポン金額・デザインの傾向を把握する目的で蓄積中です。</p>
   </div>
 </div>
 
-<!-- ============================== -->
-<!-- 05 整備した仕組み & リンク -->
-<!-- ============================== -->
+<!-- ================================================ -->
+<!-- DIVIDER: 領域③ -->
+<!-- ================================================ -->
+<div class="slide divider">
+  <div class="divider-inner">
+    <div class="divider-num">③</div>
+    <h2>業務フロー・ツールの整備</h2>
+    <p>属人化の解消と運用の標準化</p>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域③: 業務フロー -->
+<!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">05</div>
-    <div class="slide-title">整備した仕組み・関連資料</div>
+    <div class="slide-title">業務フロー・マニュアル・ツール</div>
   </div>
   <div class="slide-body">
-    <p>作成済みのドキュメントとツールです。</p>
+    <h3>業務フローチャート</h3>
+    <p>ポスティング施策の企画から配布完了までの全工程を、タイムライン形式で整理しました。</p>
+    <ul>
+      <li><strong>プロジェクト型フロー</strong>：X-60日（企画開始）→ X-45日（承認・発注）→ X-30日（入稿）→ X日（配布開始）の全ステップ</li>
+      <li>各ステップに<strong>担当者</strong>（menu社 / アドレア / JBF/アト / デザイナー）と<strong>依頼先</strong>を明記</li>
+      <li><strong>定常業務</strong>（毎日の効果計測、週次レポート、定例会議）と<strong>随時業務</strong>（クレーム対応、法務確認）も網羅</li>
+    </ul>
+
+    <h3>業務マニュアル</h3>
+    <p>フロー上の各タスクについて、以下を1枚のカードとして整理しました。</p>
+    <ul>
+      <li>担当者・依頼先</li>
+      <li>具体的な手順（ステップバイステップ）</li>
+      <li>INPUT（何を受け取るか）/ OUTPUT（何を出すか）</li>
+      <li>注意点・よくあるミス</li>
+    </ul>
 
     <div class="link-grid">
       <a class="link-card" href="https://yunonakanishi.github.io/adrea-ops/projects/menu-promo/posting-optimization/workflow/menu_%E3%83%9D%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E6%A5%AD%E5%8B%99%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88.html" target="_blank">
         <div class="link-icon">&#128466;</div>
-        <div>
-          <div class="link-title">業務フローチャート</div>
-          <div class="link-desc">企画〜配布完了のタイムラインと担当者・依頼先</div>
-        </div>
+        <div><div class="link-title">業務フローチャートを開く</div><div class="link-desc">全体の流れとタイムライン</div></div>
       </a>
       <a class="link-card" href="https://yunonakanishi.github.io/adrea-ops/projects/menu-promo/posting-optimization/workflow/menu_%E3%83%9D%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E6%A5%AD%E5%8B%99%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB.html" target="_blank">
         <div class="link-icon">&#128214;</div>
-        <div>
-          <div class="link-title">業務マニュアル</div>
-          <div class="link-desc">各タスクの手順・INPUT/OUTPUT・注意点</div>
-        </div>
-      </a>
-      <a class="link-card" href="https://yunonakanishi.github.io/adrea-ops/projects/menu-promo/posting-optimization/" target="_blank">
-        <div class="link-icon">&#128200;</div>
-        <div>
-          <div class="link-title">プロジェクトポータル</div>
-          <div class="link-desc">分析レポートや各種資料の一覧</div>
-        </div>
-      </a>
-      <a class="link-card" href="#" style="opacity:0.5;pointer-events:none;">
-        <div class="link-icon">&#128736;</div>
-        <div>
-          <div class="link-title">予算配分シミュレーションツール</div>
-          <div class="link-desc">3月中に完成予定</div>
-        </div>
+        <div><div class="link-title">業務マニュアルを開く</div><div class="link-desc">各タスクの手順とINPUT/OUTPUT</div></div>
       </a>
     </div>
 
-    <p style="margin-top:16px;"><strong>その他の成果物</strong></p>
-    <ul>
-      <li>エリア優先度ランク一覧（515エリアのA/B/C + CPA・CVR）</li>
-      <li>月別配分係数（季節性を考慮した配布量の目安）</li>
-      <li>デザイン別CVR・CPA一覧</li>
-      <li>他社クリエイティブの月次回収（競合チラシの収集）</li>
-    </ul>
+    <h3>予算配分シミュレーションツール（作成中）</h3>
+    <p>予算額と許容CPAを入力すると、エリアランク・季節性・配布単価を考慮して最適な配布先と部数を自動算出するツールです。3月中に完成予定。</p>
+    <table>
+      <tr><th>入力</th><th>出力</th></tr>
+      <tr><td>予算（円）、許容CPA（円）、配布月、エリア指定（任意）</td><td>エリアごとの配布部数・費用・想定CVR・想定CPA</td></tr>
+    </table>
+    <div class="callout">
+      <strong>シミュレーション例</strong>（予算8,000万円・許容CPA 6,000円・4月配布）<br>
+      → 235エリアに配布、期待CPA 3,876円、期待CV数 20,641件
+    </div>
   </div>
 </div>
 
-<!-- ============================== -->
-<!-- 06 今後の予定 -->
-<!-- ============================== -->
+<!-- ================================================ -->
+<!-- DIVIDER: 領域④ -->
+<!-- ================================================ -->
+<div class="slide divider">
+  <div class="divider-inner">
+    <div class="divider-num">④</div>
+    <h2>費用対効果の改善</h2>
+    <p>エリア・時期・デザインの分析と改善施策</p>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域④-A: エリア分析 -->
+<!-- ================================================ -->
 <div class="slide">
   <div class="slide-header">
     <div class="slide-num">06</div>
+    <div class="slide-title">エリア分析 —「どこに配るべきか」</div>
+  </div>
+  <div class="slide-body">
+    <h3>分析の手法</h3>
+    <ol class="step-list">
+      <li><strong>エリア別の実績集約</strong>：過去2年間の全施策データから、エリアごとに累計配布部数・CV数・加重平均CVR・CPAを算出</li>
+      <li><strong>エリア属性との相関分析</strong>：515エリアの人口動態（年齢、世帯構成、年収帯など206項目）とCVRの関係を統計的に分析。単純相関 → 都道府県別分析 → 決定木 → 施策を制御した偏相関・重回帰と、段階的にアプローチを深めた</li>
+      <li><strong>エリア優先度のスコアリング</strong>：実績CPAベースのスコアとエリア属性ベースのスコアを組み合わせ、A / B / Cに分類</li>
+    </ol>
+
+    <h3>分析結果</h3>
+    <table>
+      <tr><th>ランク</th><th>エリア数</th><th>平均CPA</th><th>平均CVR</th></tr>
+      <tr><td><strong style="color:var(--green);">A</strong></td><td>171</td><td>4,094円</td><td>0.220%</td></tr>
+      <tr><td><strong style="color:var(--blue);">B</strong></td><td>172</td><td>6,278円</td><td>0.143%</td></tr>
+      <tr><td><strong style="color:var(--orange);">C</strong></td><td>172</td><td>9,641円</td><td>0.093%</td></tr>
+    </table>
+
+    <h3>エリア属性から分かったこと</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="card-title">CVRが高くなるエリアの傾向</div>
+        <div class="card-desc">25〜34歳が多い ／ 単身世帯が多い ／ 賃貸が多い ／ 労働人口が多い</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--red);">
+        <div class="card-title">CVRが低くなるエリアの傾向</div>
+        <div class="card-desc">55歳以上が多い ／ 高齢世帯員が多い</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ただし、エリア属性がCVRに与える影響は全体の約8%程度。エリアの優先度は<strong>実績CPA</strong>をメインに判断し、属性は配布実績が少ないエリアの補助指標として使用。
+    </div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域④-B: 時期分析 -->
+<!-- ================================================ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">07</div>
+    <div class="slide-title">時期分析 —「いつ配るべきか」</div>
+  </div>
+  <div class="slide-body">
+    <h3>分析の手法</h3>
+    <ol class="step-list">
+      <li><strong>月別のCVR・CPA推移</strong>を算出（全エリアの加重平均）</li>
+      <li><strong>同一エリアが複数月に配布されたケース</strong>に絞り、エリア差を固定した純粋な時期変動を抽出（エリアの違いによるノイズを除去）</li>
+      <li><strong>異常値月の検出</strong>：平均±2σを超える月を特定</li>
+    </ol>
+
+    <h3>分析結果</h3>
+    <table>
+      <tr><th>時期</th><th>月別配分係数</th><th>傾向</th></tr>
+      <tr><td><strong style="color:var(--green);">12月</strong></td><td>1.226（年間最高）</td><td>CVRが最も高い。同じ予算で最も効率良く獲得できる</td></tr>
+      <tr><td>1〜2月</td><td>1.1前後</td><td>冬場は全般的に良い</td></tr>
+      <tr><td>3〜6月</td><td>0.9〜1.0</td><td>標準的</td></tr>
+      <tr><td><strong style="color:var(--orange);">7〜10月</strong></td><td>0.7〜0.8</td><td>夏場は全般的に悪い</td></tr>
+      <tr><td><strong style="color:var(--red);">8月</strong></td><td>0.712（年間最低）</td><td>CVRが最も低い</td></tr>
+    </table>
+    <p>※ 配分係数 = その月のCVR ÷ 年間平均CVR。1.0が平均、1.2なら平均の1.2倍の効率。</p>
+
+    <div class="callout green">
+      <strong>活用方法</strong>：年間の配布予算を月ごとに均等配分するのではなく、冬場に厚く・夏場に薄く配分することで、同じ予算でもCV数を増やせる。予算配分シミュレーションツールにこの季節係数を組み込む予定。
+    </div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 領域④-C: デザイン分析 -->
+<!-- ================================================ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">08</div>
+    <div class="slide-title">デザイン分析 —「何を配るべきか」</div>
+  </div>
+  <div class="slide-body">
+    <h3>分析の手法</h3>
+    <ol class="step-list">
+      <li><strong>デザイン別のCVR・CPA算出</strong>：過去に使用した133種類のデザインについて加重平均を算出</li>
+      <li><strong>訴求タイプ別に分類</strong>：デザイン名から機械的にスクラッチ系・金券系・お札系・カード系・ハガキ系に分類し、タイプ別の傾向を比較</li>
+      <li><strong>ABテストの勝敗分析</strong>：同一施策×同一エリアで複数デザインを配布したケース（6,715ペア）について、CV数の差を比較</li>
+    </ol>
+
+    <h3>訴求タイプ別の実績</h3>
+    <table>
+      <tr><th>訴求タイプ</th><th>CVR</th><th>CPA</th><th>補足</th></tr>
+      <tr><td><strong>金券系</strong></td><td>0.180%</td><td style="color:var(--green);font-weight:700;">4,594円</td><td>CPA最良。コストと反応率のバランスが最も良い</td></tr>
+      <tr><td><strong>スクラッチ・くじ系</strong></td><td style="color:var(--green);font-weight:700;">0.200%</td><td>5,535円</td><td>CVR最高だが印刷コストが高くCPAでは金券系に劣後</td></tr>
+      <tr><td><strong>お札系</strong></td><td>0.166%</td><td>5,008円</td><td>安定した実績</td></tr>
+      <tr><td><strong>カード系</strong></td><td>0.151%</td><td>5,455円</td><td>—</td></tr>
+      <tr><td><strong>ハガキ系</strong></td><td>0.110%</td><td>7,605円</td><td>CVR・CPAともに最も効率が悪い</td></tr>
+    </table>
+
+    <h3>CPA TOP3 デザイン</h3>
+    <table>
+      <tr><th>#</th><th>デザイン</th><th>CPA</th></tr>
+      <tr><td>1</td><td>金券（ドル札風L）_既存1ヵ月</td><td>1,643円</td></tr>
+      <tr><td>2</td><td>金券（ドル札風L）_既存2週間</td><td>2,010円</td></tr>
+      <tr><td>3</td><td>王道ギフトカード 2,000円</td><td>2,254円</td></tr>
+    </table>
+
+    <h3>今後の課題：デザイン検証の仕組みづくり</h3>
+    <div class="callout orange">
+      <strong>過去データの限界</strong>：「どのタイプが良いか」は分かるが「デザインの何が効いているか」は分からない。過去のABテストも配布設計が不統一で厳密な比較が難しい。<br><br>
+      <strong>今後の方針</strong>（CR検証フレームワーク・3月中に確定予定）：
+      <ul style="margin-top:8px;">
+        <li>訴求軸・フォーマット軸・表現手法軸に分解して、<strong>1施策1変数</strong>ずつ検証</li>
+        <li>同一エリア内でランダムに配布することを原則化</li>
+        <li>統計的に有意な差を検出するために必要な配布量：<strong>1群あたり約12.5万部</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- 今後の予定 -->
+<!-- ================================================ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">09</div>
     <div class="slide-title">今後の予定</div>
   </div>
   <div class="slide-body">
@@ -334,7 +568,7 @@
         <div class="tl-content">
           <strong>3月中</strong>
           <p>予算配分シミュレーションツールの完成</p>
-          <p>デザインABテストの検証ルール確定</p>
+          <p>デザインABテストの検証ルール（CR検証フレームワーク）確定</p>
         </div>
       </div>
       <div class="tl-item">
@@ -351,6 +585,26 @@
           <p>エリア選定・デザイン検証・予算配分がルール化され、<br>担当者が替わっても同じ品質で運用できる状態</p>
         </div>
       </div>
+    </div>
+
+    <h3>関連資料</h3>
+    <div class="link-grid">
+      <a class="link-card" href="https://yunonakanishi.github.io/adrea-ops/projects/menu-promo/posting-optimization/workflow/menu_%E3%83%9D%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E6%A5%AD%E5%8B%99%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88.html" target="_blank">
+        <div class="link-icon">&#128466;</div>
+        <div><div class="link-title">業務フローチャート</div><div class="link-desc">全体の流れとタイムライン</div></div>
+      </a>
+      <a class="link-card" href="https://yunonakanishi.github.io/adrea-ops/projects/menu-promo/posting-optimization/workflow/menu_%E3%83%9D%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E6%A5%AD%E5%8B%99%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB.html" target="_blank">
+        <div class="link-icon">&#128214;</div>
+        <div><div class="link-title">業務マニュアル</div><div class="link-desc">各タスクの手順とINPUT/OUTPUT</div></div>
+      </a>
+      <a class="link-card" href="https://yunonakanishi.github.io/adrea-ops/projects/menu-promo/posting-optimization/" target="_blank">
+        <div class="link-icon">&#128200;</div>
+        <div><div class="link-title">プロジェクトポータル</div><div class="link-desc">全資料の一覧</div></div>
+      </a>
+      <a class="link-card" href="#" style="opacity:0.5;pointer-events:none;">
+        <div class="link-icon">&#128736;</div>
+        <div><div class="link-title">予算配分シミュレーションツール</div><div class="link-desc">3月中に完成予定</div></div>
+      </a>
     </div>
   </div>
 </div>

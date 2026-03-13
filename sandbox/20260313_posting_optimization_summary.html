@@ -130,6 +130,77 @@
 </div>
 
 <!-- ================================================ -->
+<!-- SUMMARY 0: エグゼクティブサマリー -->
+<!-- ================================================ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">00</div>
+    <div class="slide-title">状況サマリー</div>
+    <div class="slide-sub">口頭説明用</div>
+  </div>
+  <div class="slide-body">
+    <h3>ゴール</h3>
+    <p>ポスティング施策の意思決定を属人的な判断から<strong>データに基づくルール運用</strong>に移行し、担当者が替わっても同じ品質で回せる状態を作る。</p>
+
+    <h3>現状</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="status status-done">完了</div>
+        <div class="card-title">KPI定義の統一</div>
+        <div class="card-desc">CVR・CPA・LTVの定義と計測基準を確定</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="status status-done">完了</div>
+        <div class="card-title">データベース構築</div>
+        <div class="card-desc">515エリアの属性・実績データ（6テーブル）を整備</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="status status-done">完了</div>
+        <div class="card-title">業務フロー・マニュアル</div>
+        <div class="card-desc">企画〜配布の全工程をフローチャート＋マニュアルで明文化</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="status status-done">完了</div>
+        <div class="card-title">エリアランク分け</div>
+        <div class="card-desc">実績CPA＋属性スコアでA/B/Cに分類</div>
+      </div>
+    </div>
+
+    <h3>課題</h3>
+    <ul>
+      <li>過去データから「どの訴求タイプが良いか」は分かるが、「デザインの何が効いているか」は特定できていない</li>
+      <li>過去のABテストは配布設計が不統一で、厳密な比較ができない</li>
+      <li>効果表のデータソース切替が未完了（旧基準との混在が残っている）</li>
+    </ul>
+
+    <h3>進行中の対策</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:3px solid var(--orange);">
+        <div class="status status-wip">進行中</div>
+        <div class="card-title">コスト削減検証</div>
+        <div class="card-desc">配布単価・印刷コストの見直しによるCPA改善余地を検証</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--orange);">
+        <div class="status status-wip">進行中</div>
+        <div class="card-title">クーポン額検証</div>
+        <div class="card-desc">クーポン金額とCVR・CPAの関係を実地テスト（〜5月末）</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--orange);">
+        <div class="status status-wip">進行中</div>
+        <div class="card-title">効果表の作り替え</div>
+        <div class="card-desc">データソースをorgからjoin_orders_lightに変更中</div>
+      </div>
+    </div>
+
+    <h3>今後の予定</h3>
+    <ul>
+      <li><strong>3月中</strong>：CR検証フレームワークの確定、効果表の作り替え完了</li>
+      <li><strong>4〜5月</strong>：クーポン額検証、クリエイティブ軸・エリア軸での検証</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================================================ -->
 <!-- SUMMARY 1: 背景と目的 -->
 <!-- ================================================ -->
 <div class="slide">
@@ -223,6 +294,7 @@
   <div class="slide-header">
     <div class="slide-num">03</div>
     <div class="slide-title">KPIの定義と計測基準の統一</div>
+    <div class="slide-sub"><span class="status status-done">完了</span></div>
   </div>
   <div class="slide-body">
     <p>ポスティングの効果を統一的に評価するため、3つのKPIを定義し、計測の基準を整理しました。</p>
@@ -284,6 +356,7 @@
   <div class="slide-header">
     <div class="slide-num">04</div>
     <div class="slide-title">整備したデータベース</div>
+    <div class="slide-sub"><span class="status status-done">完了</span></div>
   </div>
   <div class="slide-body">
     <p>分析と運用判断の基盤として、6つのデータテーブルを整備しました。</p>
@@ -344,6 +417,7 @@
   <div class="slide-header">
     <div class="slide-num">05</div>
     <div class="slide-title">安定運用体制の整備</div>
+    <div class="slide-sub"><span class="status status-wip">進行中</span></div>
   </div>
   <div class="slide-body">
     <h3>業務フローチャート</h3>
@@ -401,7 +475,7 @@
   <div class="slide-header">
     <div class="slide-num">06</div>
     <div class="slide-title">過去データの分析結果</div>
-    <div class="slide-sub">エリア・時期・クリエイティブの3軸</div>
+    <div class="slide-sub"><span class="status status-wip">進行中</span></div>
   </div>
   <div class="slide-body">
     <h3>エリア軸 —「どこに配るべきか」</h3>
@@ -445,6 +519,10 @@
       <tr><td><strong>カード系</strong></td><td>0.151%</td><td>5,455円</td><td>—</td></tr>
       <tr><td><strong>ハガキ系</strong></td><td>0.110%</td><td>7,605円</td><td>CVR・CPAともに効率が悪い</td></tr>
     </table>
+
+    <div class="callout">
+      各軸ともさらに調査中です。追加の結果が見えてきたら、詳細を記載のうえ改めて報告します。
+    </div>
   </div>
 </div>
 
@@ -455,6 +533,7 @@
   <div class="slide-header">
     <div class="slide-num">07</div>
     <div class="slide-title">進行中の検証</div>
+    <div class="slide-sub"><span class="status status-wip">進行中</span></div>
   </div>
   <div class="slide-body">
     <div class="card-grid">
@@ -485,7 +564,7 @@
   <div class="slide-header">
     <div class="slide-num">08</div>
     <div class="slide-title">クリエイティブPDCAプロセスの構築</div>
-    <div class="slide-sub">これからやること</div>
+    <div class="slide-sub"><span class="status status-wip">進行中</span></div>
   </div>
   <div class="slide-body">
     <p>「デザインの何が効いているか」を特定するために、CR検証フレームワークを構築中です。</p>
@@ -542,6 +621,7 @@
         <div class="tl-content">
           <strong>4月〜5月</strong>
           <p>クーポン金額の検証（効果とコストの最適バランスを実地テスト）</p>
+          <p>クリエイティブ軸・エリア軸での検証</p>
         </div>
       </div>
       <div class="tl-item">
